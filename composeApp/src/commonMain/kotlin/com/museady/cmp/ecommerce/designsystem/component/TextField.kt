@@ -1,10 +1,7 @@
 package com.museady.cmp.ecommerce.designsystem.component
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +19,7 @@ import com.museady.cmp.ecommerce.designsystem.theme.AppShapes
 import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.wrong_format
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun EcommerceTextField(
@@ -68,7 +66,7 @@ fun TextFieldHeader(
         )
         Text(
             stringResource(Res.string.wrong_format),
-            color = MaterialTheme.colorScheme.error,
+            color = AppColors.ErrorColor,
             style = MaterialTheme.typography.bodySmall
         )
     }
@@ -124,4 +122,70 @@ fun EcommerceBasicTextField(
             }
         )
     }
+}
+
+@Preview
+@Composable
+fun PreviewEcommerceTextFieldNormal() {
+    EcommerceTextField(
+        title = "Email Address",
+        value = "test@example.com",
+        placeHolderText = "Enter your email",
+        onValueChange = {},
+        isError = false,
+        modifier = Modifier.padding(16.dp)
+    )
+}
+
+@Preview
+@Composable
+fun PreviewEcommerceTextFieldError() {
+    EcommerceTextField(
+        title = "Email Address",
+        value = "invalid-email",
+        placeHolderText = "Enter your email",
+        onValueChange = {},
+        isError = true,
+        modifier = Modifier.padding(16.dp)
+    )
+}
+
+@Preview
+@Composable
+fun PreviewTextFieldHeaderNormal() {
+    TextFieldHeader(
+        text = "Email Address",
+        color = AppColors.TextDark
+    )
+}
+
+@Preview
+@Composable
+fun PreviewTextFieldHeaderError() {
+    TextFieldHeader(
+        text = "Email Address",
+        color = AppColors.ErrorColor
+    )
+}
+
+@Preview
+@Composable
+fun PreviewEcommerceBasicTextFieldNormal() {
+    EcommerceBasicTextField(
+        text = "example@example.com",
+        placeHolderText = "Enter your email",
+        onValueChange = {},
+        isError = false
+    )
+}
+
+@Preview
+@Composable
+fun PreviewEcommerceBasicTextFieldError() {
+    EcommerceBasicTextField(
+        text = "invalid-email",
+        placeHolderText = "Enter your email",
+        onValueChange = {},
+        isError = true
+    )
 }

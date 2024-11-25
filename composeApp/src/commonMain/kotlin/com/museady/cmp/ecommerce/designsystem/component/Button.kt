@@ -1,17 +1,9 @@
 package com.museady.cmp.ecommerce.designsystem.component
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.museady.cmp.ecommerce.designsystem.icons.AppIcons
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun FilledButton(
@@ -98,4 +91,55 @@ private fun ButtonText(
         color = color,
         style = MaterialTheme.typography.titleSmall
     )
+}
+
+@Preview
+@Composable
+fun PreviewFilledButton() {
+    FilledButton(
+        text = "see product",
+        onClick = {}
+    )
+}
+
+@Preview
+@Composable
+fun PreviewOutLineTextButton() {
+    OutLineTextButton(
+        text = "see product",
+        onClick = {}
+    )
+}
+
+@Preview
+@Composable
+fun PreviewTextButtonWithTrailingIcon() {
+    TextButtonWithTrailingIcon(
+        text = "shop",
+        onClick = {}
+    )
+}
+
+@Preview
+@Composable
+fun PreviewAllButtons() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        FilledButton(
+            text = "see product",
+            onClick = {}
+        )
+        OutLineTextButton(
+            text = "see product",
+            onClick = {}
+        )
+        TextButtonWithTrailingIcon(
+            text = "shop",
+            onClick = {}
+        )
+    }
 }

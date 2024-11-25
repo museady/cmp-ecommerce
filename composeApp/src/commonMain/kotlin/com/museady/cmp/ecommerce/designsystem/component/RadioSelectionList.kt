@@ -21,6 +21,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import com.museady.cmp.ecommerce.designsystem.theme.AppShapes
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun RadioSelectionGroup(
@@ -83,4 +84,35 @@ private fun RadioSelectionField(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewRadioSelectionGroup() {
+    RadioSelectionGroup(
+        radioOptions = listOf("Option 1", "Option 2", "Option 3"),
+        selectedOptionIndex = 0,
+        onSelectClick = {},
+        modifier = Modifier.padding(16.dp)
+    )
+}
+
+@Preview
+@Composable
+fun PreviewRadioSelectionFieldSelected() {
+    RadioSelectionField(
+        selected = true,
+        text = "Selected Option",
+        onclick = {}
+    )
+}
+
+@Preview
+@Composable
+fun PreviewRadioSelectionFieldUnselected() {
+    RadioSelectionField(
+        selected = false,
+        text = "Unselected Option",
+        onclick = {}
+    )
 }
