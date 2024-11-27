@@ -91,9 +91,10 @@ val AppTypography
         //Body - Manrope Medium - 15px (25px Line Space)
         bodyLarge = TextStyle(
             fontFamily = manropeFontFamily,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Bold,
             fontSize = 15.sp,
-            lineHeight = 25.sp
+            lineHeight = 25.sp,
+            letterSpacing = 1.07.sp
         ),
         //Used in text field header title
         bodyMedium = TextStyle(

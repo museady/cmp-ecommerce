@@ -9,8 +9,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.museady.cmp.ecommerce.designsystem.icons.AppIcons
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
+import ecommerce_cmp.composeapp.generated.resources.Res
+import ecommerce_cmp.composeapp.generated.resources.icon_arrow_right
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -70,10 +72,9 @@ fun TextButtonWithTrailingIcon(
                 color = AppColors.AlternativeGrayColor
             )
             Icon(
-                imageVector = AppIcons.ArrowForward,
+                painter = painterResource(Res.drawable.icon_arrow_right),
                 contentDescription = text,
                 tint = AppColors.PrimaryColor,
-                modifier = Modifier.size(16.dp)
             )
         }
     }

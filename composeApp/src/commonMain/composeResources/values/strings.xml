@@ -2,4 +2,40 @@
 <resources>
     <string name="app_name">CMP Ecommerce</string>
     <string name="wrong_format">Wrong Format!</string>
+
+    <!-- Header Section -->
+    <string name="header_title">XX99 MARK II HEADPHONES</string>
+    <string name="header_description">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.</string>
+    <string name="header_button_text">SEE PRODUCT</string>
+
+    <!-- Categories Section -->
+    <string name="category_headphones">HEADPHONES</string>
+    <string name="category_speakers">SPEAKERS</string>
+    <string name="category_earphones">EARPHONES</string>
+
+    <!-- Featured Product Section -->
+    <string name="featured_product_title">ZX9 SPEAKER</string>
+    <string name="featured_product_description">Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</string>
+    <string name="featured_product_button_text">SEE PRODUCT</string>
+
+    <!-- Other Products Section -->
+    <string name="zx7_speaker_title">ZX7 SPEAKER</string>
+    <string name="yx1_earphones_title">YX1 EARPHONES</string>
+
+    <!-- About Section -->
+    <string name="about_header">BRINGING YOU THE BEST AUDIO GEAR</string>
+    <string name="about_body">Located at the heart of New York City, Audiophile is the premier store for high-end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment.</string>
+
+    <!-- Footer Section -->
+    <string name="footer_logo">Audiophile</string>
+    <string name="footer_home">HOME</string>
+    <string name="footer_headphones">HEADPHONES</string>
+    <string name="footer_speakers">SPEAKERS</string>
+    <string name="footer_earphones">EARPHONES</string>
+    <string name="footer_copyright">Copyright 2021. All Rights Reserved</string>
+
+    <!-- Button Text -->
+    <string name="see_product_button_text">SEE PRODUCT</string>
+    <string name="shop_button">SHOP</string>
+
 </resources>

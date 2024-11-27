@@ -49,6 +49,9 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.compose.imageloader)
+            implementation(libs.compose.material3.window.size)
+            implementation(libs.compose.material3.adaptive)
+            //Voyager
             implementation(libs.voyager.navigator)
             //Datetime
             implementation(libs.kotlinx.datetime)
