@@ -51,7 +51,7 @@ fun QuantitySelectorIconButton(
     IconButton(onClick) {
         Icon(
             icon,
-            tint = AppColors.AlternativeGrayColor,
+            tint = AppColors.AlternativeGray,
             contentDescription = icon.name,
             modifier = Modifier.size(12.dp)
         )

@@ -26,7 +26,7 @@ fun FilledButton(
         shape = RoundedCornerShape(0.dp),
         modifier = modifier,
         colors = ButtonDefaults.filledTonalButtonColors().copy(
-            containerColor = AppColors.PrimaryColor
+            containerColor = AppColors.Primary
         )
     ) {
         ButtonText(
@@ -69,12 +69,12 @@ fun TextButtonWithTrailingIcon(
             ButtonText(
                 text = text,
                 modifier = Modifier.padding(end = 4.dp),
-                color = AppColors.AlternativeGrayColor
+                color = AppColors.AlternativeGray
             )
             Icon(
                 painter = painterResource(Res.drawable.icon_arrow_right),
                 contentDescription = text,
-                tint = AppColors.PrimaryColor,
+                tint = AppColors.Primary,
             )
         }
     }

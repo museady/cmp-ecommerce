@@ -51,7 +51,7 @@ private fun RadioSelectionField(
     onclick: () -> Unit,
     text: String
 ) {
-    val borderColor = if (selected) AppColors.PrimaryColor else AppColors.OutlineColor
+    val borderColor = if (selected) AppColors.Primary else AppColors.Outline
 
     Box(
         Modifier
@@ -74,8 +74,8 @@ private fun RadioSelectionField(
                 onClick = onclick,
                 modifier = Modifier.padding(vertical = 4.dp),
                 colors = RadioButtonDefaults.colors(
-                    selectedColor = AppColors.PrimaryColor,
-                    unselectedColor = AppColors.OutlineColor,
+                    selectedColor = AppColors.Primary,
+                    unselectedColor = AppColors.Outline,
                 )
             )
             Text(

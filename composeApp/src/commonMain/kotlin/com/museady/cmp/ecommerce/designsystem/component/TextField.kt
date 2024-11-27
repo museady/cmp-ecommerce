@@ -83,8 +83,8 @@ fun EcommerceBasicTextField(
 ) {
     val outlineTextFieldColors = OutlinedTextFieldDefaults.colors(
         errorBorderColor = AppColors.ErrorColor,
-        focusedBorderColor = AppColors.PrimaryColor,
-        unfocusedBorderColor = AppColors.OutlineColor
+        focusedBorderColor = AppColors.Primary,
+        unfocusedBorderColor = AppColors.Outline
     )
 
     BasicTextField(
@@ -106,7 +106,7 @@ fun EcommerceBasicTextField(
                 Text(
                     text = placeHolderText,
                     style = MaterialTheme.typography.titleSmall,
-                    color = AppColors.AlternativeGrayColor
+                    color = AppColors.AlternativeGray
                 )
             },
             container = {
