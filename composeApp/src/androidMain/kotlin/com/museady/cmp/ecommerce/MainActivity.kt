@@ -1,25 +1,33 @@
 package com.museady.cmp.ecommerce
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
         setContent {
+            ChangeStatusBarColor()
             App()
         }
     }
 }
 
-@Preview
 @Composable
-fun AppAndroidPreview() {
-    App()
+private fun ChangeStatusBarColor(
+) {
+    val view = LocalView.current
+    val window = (view.context as? Activity)?.window
+
+    LaunchedEffect(Unit) {
+        window?.statusBarColor = AppColors.NeutralDark.toArgb()
+    }
 }

@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import ecommerce_cmp.composeapp.generated.resources.Res
-import ecommerce_cmp.composeapp.generated.resources.icon_arrow_right
+import ecommerce_cmp.composeapp.generated.resources.ic_arrow_right
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -31,7 +31,7 @@ fun FilledButton(
     ) {
         ButtonText(
             text = text,
-            color = AppColors.TextLight
+            color = AppColors.PureWhite
         )
     }
 }
@@ -72,7 +72,7 @@ fun TextButtonWithTrailingIcon(
                 color = AppColors.AlternativeGray
             )
             Icon(
-                painter = painterResource(Res.drawable.icon_arrow_right),
+                painter = painterResource(Res.drawable.ic_arrow_right),
                 contentDescription = text,
                 tint = AppColors.Primary,
             )

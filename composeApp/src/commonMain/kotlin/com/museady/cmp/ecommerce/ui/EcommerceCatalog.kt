@@ -1,14 +1,13 @@
 package com.museady.cmp.ecommerce.ui
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.add
-import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,32 +23,34 @@ import ecommerce_cmp.composeapp.generated.resources.see_product_button_text
 import ecommerce_cmp.composeapp.generated.resources.shop_button
 import org.jetbrains.compose.resources.stringResource
 
-
 @Composable
-fun EcommerceCatalog(windowSizeClass: WindowSizeClass) {
-    val contentPadding = WindowInsets
-        .systemBars
-        .add(WindowInsets(left = 16.dp, top = 16.dp, right = 16.dp, bottom = 16.dp))
-        .asPaddingValues()
+fun EcommerceCatalog(
+    windowSizeClass: WindowSizeClass,
+    modifier: Modifier = Modifier
+) {
+    val scrollState = rememberScrollState()
+    val appContentHorizontalPadding =
+        if (windowSizeClass.windowWidthSizeClass == COMPACT) 20.dp else 40.dp
+
     Column(
-        modifier = Modifier.fillMaxSize().padding(contentPadding),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(
+                horizontal = appContentHorizontalPadding,
+            )
+            .scrollable(scrollState, Orientation.Vertical),
     ) {
+        Spacer(Modifier.height(16.dp))
         CategoryList(
             windowSizeClass.windowWidthSizeClass == COMPACT,
             {},
-            modifier = Modifier.padding(
-                horizontal =
-                when (windowSizeClass.windowWidthSizeClass) {
-                    COMPACT -> 16.dp
-                    MEDIUM -> 40.dp
-                    else -> 164.dp
-                },
-            )
         )
 
+        Spacer(Modifier.height(16.dp))
         OutLineTextButton(stringResource(Res.string.see_product_button_text), {})
+        Spacer(Modifier.height(16.dp))
         FilledButton(stringResource(Res.string.see_product_button_text), {})
+        Spacer(Modifier.height(16.dp))
         TextButtonWithTrailingIcon(stringResource(Res.string.shop_button), {})
     }
 }

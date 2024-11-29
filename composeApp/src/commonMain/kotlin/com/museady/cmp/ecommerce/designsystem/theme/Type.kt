@@ -75,7 +75,7 @@ val AppTypography
         //Overline - Manrope Regular - 14px (All Caps, 19px Line Space, 10px Char. Space)
         titleMedium = TextStyle(
             fontFamily = manropeFontFamily,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Medium,
             fontSize = 14.sp,
             letterSpacing = 10.sp,
             lineHeight = 19.sp
@@ -111,12 +111,12 @@ val AppTypography
             fontSize = 12.sp,
             lineHeight = 20.sp,
             letterSpacing = (-.21).sp
-        ),
+        ),//Used in home topAppBar actions
         labelLarge = TextStyle(
             fontFamily = manropeFontFamily,
             fontWeight = FontWeight.Bold,
             fontSize = 13.sp,
-            letterSpacing = 1.sp,
+            letterSpacing = 2.sp,
             lineHeight = 25.sp
         ),
         labelMedium = TextStyle(

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CMP Ecommerce</string>
+    <string name="app_name">audiophile</string>
     <string name="wrong_format">Wrong Format!</string>
 
     <!-- Header Section -->
@@ -38,4 +38,10 @@
     <string name="see_product_button_text">SEE PRODUCT</string>
     <string name="shop_button">SHOP</string>
 
+    <!-- HomeScreen Section -->
+    <string name="home">HOME</string>
+
+    <!-- TopAppbar Section -->
+    <string name="cd_top_appbar_menu_button">open menu</string>
+    <string name="cd_top_appbar_cart_button">open cart</string>
 </resources>
