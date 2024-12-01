@@ -34,7 +34,20 @@ private val TopAppBarColors
     )
 
 @Composable
-fun MobileTopAppbar(
+fun AudioPhileTopAppBar(
+    isCompact: Boolean,
+    openMenuDrawer: () -> Unit,
+    openCart: () -> Unit,
+) {
+    if (isCompact) {
+        MobileTopAppbar(onMenuButtonClick = openMenuDrawer, onCartClick = openCart)
+    } else {
+        TabletTopAppbar(onMenuButtonClick = openMenuDrawer, onCartClick = openCart)
+    }
+}
+
+@Composable
+private fun MobileTopAppbar(
     onMenuButtonClick: () -> Unit,
     onCartClick: () -> Unit
 ) {
@@ -43,17 +56,24 @@ fun MobileTopAppbar(
             TopAppBarTitle()
         },
         navigationIcon = {
-            NavigationIcon(onMenuButtonClick = onMenuButtonClick)
+            NavigationIcon(
+                onMenuButtonClick = onMenuButtonClick,
+                modifier = Modifier.padding(start = 6.dp)
+            )
         },
         actions = {
-            TopAppBarCartAction(onCartClick = onCartClick)
+            TopAppBarCartAction(
+                onCartClick = onCartClick,
+                modifier = Modifier.padding(end = 6.dp)
+            )
         },
         colors = TopAppBarColors,
+        expandedHeight = 76.dp
     )
 }
 
 @Composable
-fun TabletTopAppbar(
+private fun TabletTopAppbar(
     onMenuButtonClick: () -> Unit,
     onCartClick: () -> Unit
 ) {
@@ -74,6 +94,7 @@ fun TabletTopAppbar(
             )
         },
         colors = TopAppBarColors,
+        expandedHeight = 86.dp
     )
 }
 
