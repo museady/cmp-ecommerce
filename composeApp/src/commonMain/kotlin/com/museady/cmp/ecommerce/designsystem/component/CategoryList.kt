@@ -24,18 +24,38 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import ecommerce_cmp.composeapp.generated.resources.Res
-import ecommerce_cmp.composeapp.generated.resources.category_earphones
-import ecommerce_cmp.composeapp.generated.resources.category_headphones
-import ecommerce_cmp.composeapp.generated.resources.category_speakers
 import ecommerce_cmp.composeapp.generated.resources.cateogry_thumbnail_earphones
 import ecommerce_cmp.composeapp.generated.resources.cateogry_thumbnail_headphones
 import ecommerce_cmp.composeapp.generated.resources.cateogry_thumbnail_speakers
+import ecommerce_cmp.composeapp.generated.resources.earphones
+import ecommerce_cmp.composeapp.generated.resources.headphones
+import ecommerce_cmp.composeapp.generated.resources.speakers
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+//Placeholder to provide categories this will be fetched later from firebase
+val availableCategories = listOf(
+    Pair(
+        Res.string.headphones,
+        Res.drawable.cateogry_thumbnail_headphones
+    ),
+    Pair(
+        Res.string.speakers,
+        Res.drawable.cateogry_thumbnail_speakers
+    ),
+    Pair(
+        Res.string.earphones,
+        Res.drawable.cateogry_thumbnail_earphones
+    )
+)
+
+/**
+ * A composable for displaying a list of product categories.
+ * This component is designed to be used throughout the app as part of the design system.
+ */
 @Composable
 fun CategoryList(
     isCompact: Boolean,
@@ -43,12 +63,11 @@ fun CategoryList(
     modifier: Modifier = Modifier,
     categories: List<Pair<StringResource, DrawableResource>> = availableCategories
 ) {
-    val columnCount = if (isCompact) 1 else 3
     LazyVerticalGrid(
-        columns = GridCells.Fixed(columnCount),
+        columns = GridCells.Fixed(if (isCompact) 1 else 3),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier
+        modifier = modifier.height(if (isCompact) 700.dp else 220.dp)
     ) {
         itemsIndexed(categories) { index, category ->
             CategoryCard(
@@ -91,10 +110,7 @@ fun CategoryCard(
                 text = title,
                 style = MaterialTheme.typography.bodyLarge,
             )
-            TextButtonWithTrailingIcon(
-                text = "Shop",
-                onClick = onShopClick,
-            )
+            ShopButtonWithTrailingIcon(onClick = onShopClick)
         }
     }
 }
@@ -121,19 +137,3 @@ fun PreviewCategoryCard() {
         onShopClick = {}
     )
 }
-
-//Placeholder to provide categories this will be fetched later from firebase
-val availableCategories = listOf(
-    Pair(
-        Res.string.category_headphones,
-        Res.drawable.cateogry_thumbnail_headphones
-    ),
-    Pair(
-        Res.string.category_speakers,
-        Res.drawable.cateogry_thumbnail_speakers
-    ),
-    Pair(
-        Res.string.category_earphones,
-        Res.drawable.cateogry_thumbnail_earphones
-    )
-)
