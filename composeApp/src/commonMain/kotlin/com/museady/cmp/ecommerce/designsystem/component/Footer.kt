@@ -21,15 +21,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
-import com.museady.cmp.ecommerce.ui.DefaultCardShape
-import com.museady.cmp.ecommerce.ui.getHighlightedText
-import com.museady.cmp.ecommerce.ui.splitTextAfterWord
+import com.museady.cmp.ecommerce.designsystem.theme.AppShapes.DefaultCardShape
 import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.app_name
 import ecommerce_cmp.composeapp.generated.resources.copy_right_txt
@@ -51,6 +54,35 @@ import ecommerce_cmp.composeapp.generated.resources.tablet_split_after_word
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+
+// Inserts a newline after the first occurrence of the specified word.
+private fun insertNewLineAfterWord(fullText: String, word: String): String {
+    return fullText.replaceFirst(word, "$word\n")
+}
+
+// Highlights the specified word in the text with a given color.
+private fun highlightWordInText(
+    fullText: String,
+    wordToHighlight: String,
+    highlightColor: Color
+): AnnotatedString {
+    return buildAnnotatedString {
+        val startIndex = fullText.indexOf(wordToHighlight, ignoreCase = true)
+        if (startIndex != -1) {
+            // Text before the highlighted word
+            append(fullText.substring(0, startIndex))
+            // Highlighted word
+            withStyle(style = SpanStyle(color = highlightColor)) {
+                append(fullText.substring(startIndex, startIndex + wordToHighlight.length))
+            }
+            // Text after the highlighted word
+            append(fullText.substring(startIndex + wordToHighlight.length))
+        } else {
+            // If no match, append the full text unmodified
+            append(fullText)
+        }
+    }
+}
 
 @Composable
 fun Footer(
@@ -261,8 +293,8 @@ private fun HeroTitle(
     modifier: Modifier = Modifier
 ) {
     Text(
-        text = getHighlightedText(
-            fullText = splitTextAfterWord(
+        text = highlightWordInText(
+            fullText = insertNewLineAfterWord(
                 fullText = stringResource(Res.string.home_best_gear_title),
                 word = splitAfterWord
             ),
