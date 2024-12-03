@@ -57,7 +57,7 @@ private fun RadioSelectionField(
         Modifier
             .fillMaxWidth()
             .height(56.dp)
-            .border((.5).dp, borderColor, shape = AppShapes.InputFieldCornerShape),
+            .border((.5).dp, borderColor, shape = AppShapes.DefaultCardShape),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

@@ -11,9 +11,9 @@ object AppColors {
     val PureWhite = Color(0xFFFFFFFF)
     val MediumGrey = Color(0xff8b8b8b)
     val LightGrey = Color(0xffc6c6c6)
-    val Background = Color(0xfff2f2f2)
-    val TextDark = Color(0xFF000000)
+    val Background = Color(0xfffafafa)
+    val PureBlack = Color(0xFF000000)
     val Outline = Color(0xFFCFCFCF)
     val ErrorColor = Color(0xFFCD2C2C)
-    val AlternativeGray = Color(0xff808080)
+    val AlternativeGray = Color(0xff979797)
 }

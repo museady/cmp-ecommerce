@@ -12,33 +12,35 @@ import androidx.compose.ui.unit.dp
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.ic_arrow_right
+import ecommerce_cmp.composeapp.generated.resources.see_product_button_text
+import ecommerce_cmp.composeapp.generated.resources.shop_button
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun FilledButton(
-    text: String,
+fun SeeProductFilledButton(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    containerColor:Color = AppColors.Primary
 ) {
     FilledTonalButton(
         onClick = onClick,
         shape = RoundedCornerShape(0.dp),
         modifier = modifier,
         colors = ButtonDefaults.filledTonalButtonColors().copy(
-            containerColor = AppColors.Primary
+            containerColor = containerColor
         )
     ) {
         ButtonText(
-            text = text,
+            text = stringResource(Res.string.see_product_button_text),
             color = AppColors.PureWhite
         )
     }
 }
 
 @Composable
-fun OutLineTextButton(
-    text: String,
+fun SeeProductOutlineButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -49,15 +51,14 @@ fun OutLineTextButton(
         modifier = modifier
     ) {
         ButtonText(
-            text = text,
-            color = AppColors.TextDark
+            text = stringResource(Res.string.see_product_button_text),
+            color = AppColors.PureBlack
         )
     }
 }
 
 @Composable
-fun TextButtonWithTrailingIcon(
-    text: String,
+fun ShopButtonWithTrailingIcon(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -67,13 +68,13 @@ fun TextButtonWithTrailingIcon(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             ButtonText(
-                text = text,
+                text = stringResource(Res.string.shop_button),
                 modifier = Modifier.padding(end = 4.dp),
                 color = AppColors.AlternativeGray
             )
             Icon(
                 painter = painterResource(Res.drawable.ic_arrow_right),
-                contentDescription = text,
+                contentDescription = stringResource(Res.string.shop_button),
                 tint = AppColors.Primary,
             )
         }
@@ -97,28 +98,19 @@ private fun ButtonText(
 @Preview
 @Composable
 fun PreviewFilledButton() {
-    FilledButton(
-        text = "see product",
-        onClick = {}
-    )
+    SeeProductFilledButton({})
 }
 
 @Preview
 @Composable
 fun PreviewOutLineTextButton() {
-    OutLineTextButton(
-        text = "see product",
-        onClick = {}
-    )
+    SeeProductOutlineButton({})
 }
 
 @Preview
 @Composable
 fun PreviewTextButtonWithTrailingIcon() {
-    TextButtonWithTrailingIcon(
-        text = "shop",
-        onClick = {}
-    )
+    ShopButtonWithTrailingIcon({})
 }
 
 @Preview
@@ -130,17 +122,8 @@ fun PreviewAllButtons() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        FilledButton(
-            text = "see product",
-            onClick = {}
-        )
-        OutLineTextButton(
-            text = "see product",
-            onClick = {}
-        )
-        TextButtonWithTrailingIcon(
-            text = "shop",
-            onClick = {}
-        )
+        SeeProductFilledButton(onClick = {})
+        SeeProductOutlineButton(onClick = {})
+        ShopButtonWithTrailingIcon(onClick = {})
     }
 }

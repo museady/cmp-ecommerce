@@ -30,7 +30,7 @@ fun EcommerceTextField(
     isError: Boolean = false,
     modifier: Modifier = Modifier
 ) {
-    val titleTextColor = if (isError) AppColors.ErrorColor else AppColors.TextDark
+    val titleTextColor = if (isError) AppColors.ErrorColor else AppColors.PureBlack
 
     Column(
         modifier,
@@ -115,7 +115,7 @@ fun EcommerceBasicTextField(
                     isError = isError,
                     interactionSource = interactionSource,
                     colors = outlineTextFieldColors,
-                    shape = AppShapes.InputFieldCornerShape,
+                    shape = AppShapes.DefaultCardShape,
                     focusedBorderThickness = .5.dp,
                     unfocusedBorderThickness = .5.dp,
                 )
@@ -155,7 +155,7 @@ fun PreviewEcommerceTextFieldError() {
 fun PreviewTextFieldHeaderNormal() {
     TextFieldHeader(
         text = "Email Address",
-        color = AppColors.TextDark
+        color = AppColors.PureBlack
     )
 }
 
