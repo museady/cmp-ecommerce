@@ -5,13 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -60,21 +57,32 @@ val availableCategories = listOf(
 fun CategoryList(
     isCompact: Boolean,
     onShopClick: (index: Int) -> Unit,
-    modifier: Modifier = Modifier,
     categories: List<Pair<StringResource, DrawableResource>> = availableCategories
 ) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(if (isCompact) 1 else 3),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier.height(if (isCompact) 700.dp else 220.dp)
-    ) {
-        itemsIndexed(categories) { index, category ->
-            CategoryCard(
-                title = stringResource(category.first),
-                imageResource = painterResource(category.second),
-                onShopClick = { onShopClick(index) }
-            )
+    if (isCompact) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            categories.forEachIndexed { index, category ->
+                CategoryCard(
+                    title = stringResource(category.first),
+                    imageResource = painterResource(category.second),
+                    onShopClick = { onShopClick(index) }
+                )
+            }
+        }
+    } else {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            categories.forEachIndexed { index, category ->
+                CategoryCard(
+                    title = stringResource(category.first),
+                    imageResource = painterResource(category.second),
+                    onShopClick = { onShopClick(index) },
+                    modifier = Modifier.weight(1f)
+                )
+            }
         }
     }
 }
@@ -86,12 +94,7 @@ fun CategoryCard(
     onShopClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier
-            .height(223.dp)
-            .padding(bottom = 4.dp)
-            .fillMaxWidth()
-    ) {
+    Box(modifier.fillMaxWidth()) {
         Box(
             Modifier
                 .height(164.dp)
@@ -105,7 +108,10 @@ fun CategoryCard(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CategoryCardImage(imageResource = imageResource)
+            CategoryCardImage(
+                imageResource = imageResource,
+                contentDescription = title
+            )
             Text(
                 text = title,
                 style = MaterialTheme.typography.bodyLarge,
@@ -118,11 +124,12 @@ fun CategoryCard(
 @Composable
 fun CategoryCardImage(
     imageResource: Painter,
+    contentDescription: String,
     modifier: Modifier = Modifier
 ) {
     Image(
         painter = imageResource,
-        contentDescription = null,
+        contentDescription = contentDescription,
         modifier = modifier.size(140.dp),
         contentScale = ContentScale.Inside
     )
