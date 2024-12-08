@@ -150,9 +150,9 @@ fun TopAppBarDivider(horizontalPadding: Dp) {
             .background(AppColors.NeutralDark)
     ) {
         HorizontalDivider(
-            Modifier.padding(horizontal =horizontalPadding),
+            Modifier.padding(horizontal = horizontalPadding),
             thickness = .5.dp,
-            color = AppColors.MediumGrey
+            color = AppColors.AlternativeGray
         )
     }
 }
