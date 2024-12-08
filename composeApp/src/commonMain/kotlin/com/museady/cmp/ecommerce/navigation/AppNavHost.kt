@@ -25,12 +25,13 @@ fun AppNavHost(
         startDestination = HomeRoute,
         modifier = modifier,
     ) {
-        homeScreen(
-            isCompact
-        ) { category ->
-            val topLevelNavOptions = navigationState.topLevelNavOptions
+        val topLevelNavOptions by lazy {
+            navigationState.topLevelNavOptions
+        }
 
+        fun navigateToSpecificCategory(category: Category) {
             with(navController) {
+
                 when (category) {
                     Category.HEADPHONES -> navigateToHeadphones(topLevelNavOptions)
                     Category.SPEAKRS -> navigateToSpeakers(topLevelNavOptions)
@@ -39,10 +40,22 @@ fun AppNavHost(
             }
         }
 
-        headphoneScreen(isCompact)
+        homeScreen(
+            isCompact
+        ) { category ->
+            navigateToSpecificCategory(category)
+        }
 
-        speakersScreen(isCompact)
+        headphoneScreen(isCompact) { category ->
+            navigateToSpecificCategory(category)
+        }
 
-        earphonesScreen(isCompact)
+        speakersScreen(isCompact) { category ->
+            navigateToSpecificCategory(category)
+        }
+
+        earphonesScreen(isCompact) { category ->
+            navigateToSpecificCategory(category)
+        }
     }
 }

@@ -6,6 +6,10 @@
     <string name="headphones">HEADPHONES</string>
     <string name="speakers">SPEAKERS</string>
     <string name="earphones">EARPHONES</string>
+    <string name="new_product">NEW PRODUCT</string>
+
+    <!-- Navigation -->
+    <string name="home_title">Home</string>
 
     <!-- Header -->
     <string name="header_title">XX99 MARK II HEADPHONES</string>
@@ -34,7 +38,6 @@
     <string name="wrong_format">Wrong Format!</string>
 
     <!-- HomeScreen -->
-    <string name="new_product">NEW PRODUCT</string>
     <string name="new_product_name">XX99 MARK II\nHEADPHONES</string>
     <string name="new_product_description">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.</string>
     <string name="home_best_gear_title">BRINGING YOU THE BEST AUDIO GEAR</string>

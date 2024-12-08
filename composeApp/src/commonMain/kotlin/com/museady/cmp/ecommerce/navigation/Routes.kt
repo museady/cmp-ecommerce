@@ -31,11 +31,14 @@ fun NavController.navigateToHeadphones(navOptions: NavOptions? = null) =
 
 fun NavGraphBuilder.headphoneScreen(
     isCompat: Boolean,
+    navigateToCategory: (category: Category) -> Unit
 ) {
+
     composable<HeadphonesRoute> {
         CategoryScreen(
-            isCompat,
-            Category.HEADPHONES
+            isCompact = isCompat,
+            category = Category.HEADPHONES,
+            onCategoryClick = navigateToCategory
         )
     }
 }
@@ -48,11 +51,13 @@ fun NavController.navigateToSpeakers(navOptions: NavOptions? = null) =
 
 fun NavGraphBuilder.speakersScreen(
     isCompat: Boolean,
+    navigateToCategory: (category: Category) -> Unit
 ) {
     composable<SpeakersRoute> {
         CategoryScreen(
-            isCompat,
-            Category.SPEAKRS
+            isCompact = isCompat,
+            category = Category.SPEAKRS,
+            onCategoryClick = navigateToCategory
         )
     }
 }
@@ -65,11 +70,13 @@ fun NavController.navigateToEarphones(navOptions: NavOptions? = null) =
 
 fun NavGraphBuilder.earphonesScreen(
     isCompat: Boolean,
+    navigateToCategory: (category: Category) -> Unit
 ) {
     composable<EarphonesRoute> {
         CategoryScreen(
-            isCompat,
-            Category.EARPHONES
+            isCompact = isCompat,
+            category = Category.EARPHONES,
+            onCategoryClick = navigateToCategory
         )
     }
 }
