@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.designsystem.component.AppFooter
+import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductOutlineButton
@@ -168,10 +169,8 @@ fun BoxScope.NewProductContent(
                 color = AppColors.PureWhite
             )
             Spacer(Modifier.height(24.dp))
-            Text(
+            BodyText(
                 stringResource(Res.string.new_product_description),
-                style = bodyLarge,
-                textAlign = TextAlign.Center,
                 color = AppColors.LightGrey,
                 modifier = Modifier.widthIn(max = if (isCompact) 328.dp else 348.dp)
             )
