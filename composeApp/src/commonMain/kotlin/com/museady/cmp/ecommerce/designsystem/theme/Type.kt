@@ -121,9 +121,16 @@ val AppTypography
         ),//Used in product desc & copyright text
         labelMedium = TextStyle(
             fontFamily = manropeFontFamily,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Medium,
             fontSize = 15.sp,
             letterSpacing = 0.sp,
             lineHeight = 25.sp
+        ),
+        labelSmall = TextStyle(
+            fontFamily = manropeFontFamily,
+            fontWeight = FontWeight.Bold,
+            fontSize = 12.sp,
+            letterSpacing = .3.sp,
+            lineHeight = 16.sp
         )
     )

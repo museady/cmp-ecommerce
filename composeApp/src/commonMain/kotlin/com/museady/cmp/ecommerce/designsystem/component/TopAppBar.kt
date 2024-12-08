@@ -146,12 +146,12 @@ fun TopAppBarDivider(horizontalPadding: Dp) {
     Box(
         Modifier
             .fillMaxWidth()
-            .height(.5.dp)
+            .height(.3.dp)
             .background(AppColors.NeutralDark)
     ) {
         HorizontalDivider(
             Modifier.padding(horizontal = horizontalPadding),
-            thickness = .5.dp,
+            thickness = .3.dp,
             color = AppColors.AlternativeGray
         )
     }

@@ -2,6 +2,7 @@ package com.museady.cmp.ecommerce.designsystem.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,35 +20,13 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import ecommerce_cmp.composeapp.generated.resources.Res
-import ecommerce_cmp.composeapp.generated.resources.cateogry_thumbnail_earphones
-import ecommerce_cmp.composeapp.generated.resources.cateogry_thumbnail_headphones
 import ecommerce_cmp.composeapp.generated.resources.cateogry_thumbnail_speakers
-import ecommerce_cmp.composeapp.generated.resources.earphones
-import ecommerce_cmp.composeapp.generated.resources.headphones
-import ecommerce_cmp.composeapp.generated.resources.speakers
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
-//Placeholder to provide categories this will be fetched later from firebase
-val availableCategories = listOf(
-    Pair(
-        Res.string.headphones,
-        Res.drawable.cateogry_thumbnail_headphones
-    ),
-    Pair(
-        Res.string.speakers,
-        Res.drawable.cateogry_thumbnail_speakers
-    ),
-    Pair(
-        Res.string.earphones,
-        Res.drawable.cateogry_thumbnail_earphones
-    )
-)
 
 /**
  * A composable for displaying a list of product categories.
@@ -56,30 +35,36 @@ val availableCategories = listOf(
 @Composable
 fun CategoryList(
     isCompact: Boolean,
-    onShopClick: (index: Int) -> Unit,
-    categories: List<Pair<StringResource, DrawableResource>> = availableCategories
+    onCategoryClick: (category: Category) -> Unit,
+    categories: List<Category> = Category.entries,
+    hideCategory: Category? = null,
+    modifier: Modifier = Modifier
 ) {
     if (isCompact) {
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = modifier
         ) {
-            categories.forEachIndexed { index, category ->
+            categories.forEach { category ->
+                if (hideCategory == category) return@forEach
                 CategoryCard(
-                    title = stringResource(category.first),
-                    imageResource = painterResource(category.second),
-                    onShopClick = { onShopClick(index) }
+                    title = stringResource(category.nameStringRes),
+                    imageResource = painterResource(category.thumbnail),
+                    onShopClick = { onCategoryClick(category) }
                 )
             }
         }
     } else {
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = modifier
         ) {
-            categories.forEachIndexed { index, category ->
+            categories.forEach { category ->
+                if (hideCategory == category) return@forEach
                 CategoryCard(
-                    title = stringResource(category.first),
-                    imageResource = painterResource(category.second),
-                    onShopClick = { onShopClick(index) },
+                    title = stringResource(category.nameStringRes),
+                    imageResource = painterResource(category.thumbnail),
+                    onShopClick = { onCategoryClick(category) },
                     modifier = Modifier.weight(1f)
                 )
             }
@@ -94,6 +79,7 @@ fun CategoryCard(
     onShopClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
     Box(modifier.fillMaxWidth()) {
         Box(
             Modifier
@@ -102,6 +88,7 @@ fun CategoryCard(
                 .shadow(2.dp, shape = RoundedCornerShape(8.dp), clip = true)
                 .background(AppColors.NeutralLight)
                 .align(Alignment.BottomCenter)
+                .clickable { onShopClick() }
         )
 
         Column(
@@ -116,7 +103,7 @@ fun CategoryCard(
                 text = title,
                 style = MaterialTheme.typography.bodyLarge,
             )
-            ShopButtonWithTrailingIcon(onClick = onShopClick)
+            ShopButtonWithTrailingIcon({})
         }
     }
 }

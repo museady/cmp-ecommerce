@@ -30,8 +30,6 @@ kotlin {
         }
     }
 
-    jvm()
-
     sourceSets {
         all {
             languageSettings {
@@ -40,7 +38,6 @@ kotlin {
         }
 
         commonMain.dependencies {
-//            implementation(project(":shared"))
             //Compose
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -48,17 +45,30 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(compose.material3AdaptiveNavigationSuite)
             implementation(libs.compose.imageloader)
             implementation(libs.compose.material3.window.size)
             implementation(libs.compose.material3.adaptive)
+            implementation(libs.navigation.compose)
             //Voyager
             implementation(libs.voyager.navigator)
+            implementation(libs.voyager.tab.navigator)
             //Datetime
             implementation(libs.kotlinx.datetime)
             //Logger
             implementation(libs.napier)
             //Constraint Layout
             implementation(libs.constraintlayout.compos)
+            //Coroutines
+            implementation(libs.kotlinx.coroutines.core)
+            //Logger
+            implementation(libs.napier)
+            //JSON
+            api(libs.kotlinx.serialization.json)
+            // DI
+            api(libs.koin.core)
+            //Datetime
+            implementation(libs.kotlinx.datetime)
         }
 
         androidMain.dependencies {
@@ -89,6 +99,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
     }
     buildFeatures {
         compose = true
@@ -96,6 +107,9 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
+    }
+    dependencies {
+        coreLibraryDesugaring(libs.desugar.jdk.libs)
     }
 }
 
