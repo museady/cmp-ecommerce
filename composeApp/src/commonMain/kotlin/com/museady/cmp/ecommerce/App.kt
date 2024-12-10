@@ -42,7 +42,6 @@ import com.museady.cmp.ecommerce.navigation.AppNavHost
 import com.museady.cmp.ecommerce.navigation.AppNavigationSuiteScaffold
 import com.museady.cmp.ecommerce.navigation.NavigationState
 import com.museady.cmp.ecommerce.navigation.rememberNavigationState
-import com.museady.cmp.ecommerce.ui.ProductDetailsScreen
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 import kotlin.reflect.KClass

@@ -14,10 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -38,7 +35,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import cafe.adriel.voyager.navigator.internal.BackHandler
 import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.core.entity.DeviceImages
 import com.museady.cmp.ecommerce.core.entity.Gallery
@@ -49,6 +45,7 @@ import com.museady.cmp.ecommerce.core.json.loadData
 import com.museady.cmp.ecommerce.designsystem.component.AppFooter
 import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
+import com.museady.cmp.ecommerce.designsystem.component.FilledButton
 import com.museady.cmp.ecommerce.designsystem.component.NewProductText
 import com.museady.cmp.ecommerce.designsystem.component.NumberQuantitySelector
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
@@ -59,7 +56,6 @@ import ecommerce_cmp.composeapp.generated.resources.add_to_cart
 import ecommerce_cmp.composeapp.generated.resources.features
 import ecommerce_cmp.composeapp.generated.resources.in_the_box
 import ecommerce_cmp.composeapp.generated.resources.you_may_also_like
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
@@ -77,7 +73,7 @@ fun ProductDetailsScreen(
 ) {
     val scope = rememberCoroutineScope()
     var product by remember { mutableStateOf(Product()) }
-    Napier.d { "product id is $productId" }
+
     LaunchedEffect(Unit) {
         scope.launch {
             product = loadData().first { it.id == productId }
@@ -454,39 +450,16 @@ fun ProductSectionTitleText(
     Text(stringResource(titleRes), style = style, modifier = modifier)
 }
 
-//Todo to be merged into button design system in separate commit
 @Composable
 fun AddToCartFilledButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     containerColor: Color = AppColors.Primary
 ) {
-    FilledTonalButton(
+    FilledButton(
+        textStringRes = Res.string.add_to_cart,
         onClick = onClick,
-        shape = RoundedCornerShape(0.dp),
         modifier = modifier,
-        colors = ButtonDefaults.filledTonalButtonColors().copy(
-            containerColor = containerColor
-        )
-    ) {
-        ButtonText(
-            text = stringResource(Res.string.add_to_cart),
-            color = AppColors.PureWhite,
-        )
-    }
-}
-
-@Composable
-private fun ButtonText(
-    text: String,
-    color: Color,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        text = text.uppercase(),
-        modifier = modifier.padding(8.dp),
-        color = color,
-        style = MaterialTheme.typography.titleSmall,
-        maxLines = 1
+        containerColor = containerColor,
     )
 }

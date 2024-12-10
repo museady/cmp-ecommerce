@@ -88,7 +88,6 @@ fun CategoryCard(
                 .shadow(2.dp, shape = RoundedCornerShape(8.dp), clip = true)
                 .background(AppColors.NeutralLight)
                 .align(Alignment.BottomCenter)
-                .clickable { onShopClick() }
         )
 
         Column(
@@ -103,7 +102,7 @@ fun CategoryCard(
                 text = title,
                 style = MaterialTheme.typography.bodyLarge,
             )
-            ShopButtonWithTrailingIcon({})
+            ShopButtonWithTrailingIcon(onShopClick)
         }
     }
 }

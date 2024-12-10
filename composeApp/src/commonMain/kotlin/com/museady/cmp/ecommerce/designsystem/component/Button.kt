@@ -1,9 +1,19 @@
 package com.museady.cmp.ecommerce.designsystem.component
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,6 +24,7 @@ import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.ic_arrow_right
 import ecommerce_cmp.composeapp.generated.resources.see_product_button_text
 import ecommerce_cmp.composeapp.generated.resources.shop_button
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -22,7 +33,22 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun SeeProductFilledButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    containerColor:Color = AppColors.Primary
+    containerColor: Color = AppColors.Primary
+) {
+    FilledButton(
+        Res.string.see_product_button_text,
+        onClick = onClick,
+        modifier = modifier,
+        containerColor = containerColor
+    )
+}
+
+@Composable
+fun FilledButton(
+    textStringRes: StringResource,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    containerColor: Color = AppColors.Primary
 ) {
     FilledTonalButton(
         onClick = onClick,
@@ -33,7 +59,7 @@ fun SeeProductFilledButton(
         )
     ) {
         ButtonText(
-            text = stringResource(Res.string.see_product_button_text),
+            text = stringResource(textStringRes),
             color = AppColors.PureWhite
         )
     }
@@ -64,7 +90,7 @@ fun ShopButtonWithTrailingIcon(
 ) {
     TextButton(
         onClick = onClick,
-        modifier = modifier
+        modifier = modifier.padding(4.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             ButtonText(
@@ -91,7 +117,8 @@ private fun ButtonText(
         text = text.uppercase(),
         modifier = modifier.padding(8.dp),
         color = color,
-        style = MaterialTheme.typography.titleSmall
+        style = MaterialTheme.typography.titleSmall,
+        maxLines = 1
     )
 }
 
