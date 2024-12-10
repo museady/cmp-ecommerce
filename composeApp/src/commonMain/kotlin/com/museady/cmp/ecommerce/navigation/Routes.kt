@@ -3,10 +3,12 @@ package com.museady.cmp.ecommerce.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.composable
 import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.ui.CategoryScreen
 import com.museady.cmp.ecommerce.ui.HomeScreen
+import com.museady.cmp.ecommerce.ui.ProductDetailsScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -16,10 +18,11 @@ fun NavController.navigateHome(navOptions: NavOptions) = navigate(route = HomeRo
 
 fun NavGraphBuilder.homeScreen(
     isCompat: Boolean,
-    navigateToCategory: (category: Category) -> Unit
+    navigateToCategory: (category: Category) -> Unit,
+    navigateToProduct: (id: Int) -> Unit
 ) {
     composable<HomeRoute> {
-        HomeScreen(isCompat, navigateToCategory)
+        HomeScreen(isCompat, navigateToCategory,navigateToProduct)
     }
 }
 
@@ -31,14 +34,16 @@ fun NavController.navigateToHeadphones(navOptions: NavOptions? = null) =
 
 fun NavGraphBuilder.headphoneScreen(
     isCompat: Boolean,
-    navigateToCategory: (category: Category) -> Unit
+    navigateToCategory: (category: Category) -> Unit,
+    navigateToProduct: (id: Int) -> Unit,
 ) {
 
     composable<HeadphonesRoute> {
         CategoryScreen(
             isCompact = isCompat,
             category = Category.HEADPHONES,
-            onCategoryClick = navigateToCategory
+            onCategoryClick = navigateToCategory,
+            onProductCLick = navigateToProduct
         )
     }
 }
@@ -51,13 +56,15 @@ fun NavController.navigateToSpeakers(navOptions: NavOptions? = null) =
 
 fun NavGraphBuilder.speakersScreen(
     isCompat: Boolean,
-    navigateToCategory: (category: Category) -> Unit
+    navigateToCategory: (category: Category) -> Unit,
+    navigateToProduct: (id: Int) -> Unit,
 ) {
     composable<SpeakersRoute> {
         CategoryScreen(
             isCompact = isCompat,
             category = Category.SPEAKRS,
-            onCategoryClick = navigateToCategory
+            onCategoryClick = navigateToCategory,
+            onProductCLick = navigateToProduct
         )
     }
 }
@@ -70,13 +77,45 @@ fun NavController.navigateToEarphones(navOptions: NavOptions? = null) =
 
 fun NavGraphBuilder.earphonesScreen(
     isCompat: Boolean,
-    navigateToCategory: (category: Category) -> Unit
-) {
+    navigateToCategory: (category: Category) -> Unit,
+    navigateToProduct: (id: Int) -> Unit,
+
+    ) {
     composable<EarphonesRoute> {
         CategoryScreen(
             isCompact = isCompat,
             category = Category.EARPHONES,
-            onCategoryClick = navigateToCategory
+            onCategoryClick = navigateToCategory,
+            onProductCLick = navigateToProduct
+        )
+    }
+}
+
+@Serializable
+data class ProductDetailsRoute(val productId: Int)
+
+fun NavController.navigateToProductDetails(
+    productId: Int,
+    navOptions: NavOptionsBuilder.() -> Unit
+) {
+    navigate(route = ProductDetailsRoute(productId)) {
+        navOptions()
+    }
+}
+
+fun NavGraphBuilder.productDetailsScreen(
+    isCompat: Boolean,
+    onOtherProductClick: (productId: Int) -> Unit,
+    onCategoryClick: (category: Category) -> Unit
+) {
+    composable<ProductDetailsRoute> { backStackEntry ->
+        val id = backStackEntry.arguments?.getInt("productId") ?: 0
+        ProductDetailsScreen(
+            productId = id,
+            isCompat = isCompat,
+            onAddToCartClick = { _, _ -> },
+            onOtherProductClick = onOtherProductClick,
+            onCategoryClick = onCategoryClick
         )
     }
 }

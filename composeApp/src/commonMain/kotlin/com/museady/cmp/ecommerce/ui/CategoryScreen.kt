@@ -31,14 +31,15 @@ import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.core.entity.Product
 import com.museady.cmp.ecommerce.core.json.loadData
 import com.museady.cmp.ecommerce.designsystem.component.AppFooter
+import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
+import com.museady.cmp.ecommerce.designsystem.component.NewProductText
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
 import com.museady.cmp.ecommerce.designsystem.component.TopAppBarDivider
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import com.museady.cmp.ecommerce.designsystem.theme.AppShapes.DefaultCardShape
 import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.allDrawableResources
-import ecommerce_cmp.composeapp.generated.resources.new_product
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
@@ -49,6 +50,7 @@ fun CategoryScreen(
     isCompact: Boolean,
     category: Category,
     onCategoryClick: (category: Category) -> Unit,
+    onProductCLick: (id: Int) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val categoryTitle = stringResource(category.nameStringRes)
@@ -79,7 +81,8 @@ fun CategoryScreen(
                     product,
                     modifier = Modifier
                         .padding(horizontal = if (isCompact) 24.dp else 40.dp)
-                        .padding(bottom = 120.dp)
+                        .padding(bottom = 120.dp),
+                    onProductCLick = onProductCLick
                 )
             }
 
@@ -124,7 +127,12 @@ fun CategoryHeader(
 }
 
 @Composable
-fun ProductCard(isCompact: Boolean, product: Product, modifier: Modifier = Modifier) {
+fun ProductCard(
+    isCompact: Boolean,
+    product: Product,
+    onProductCLick: (id: Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val productImageRes =
         if (isCompact) product.categoryImage.mobile else product.categoryImage.tablet
     val productImageDrawableResource = findImageByName(productImageRes)
@@ -149,12 +157,7 @@ fun ProductCard(isCompact: Boolean, product: Product, modifier: Modifier = Modif
         )
 
         if (product.new)
-            Text(
-                stringResource(Res.string.new_product),
-                style = MaterialTheme.typography.titleMedium,
-                color = AppColors.Primary,
-                modifier = Modifier.padding(bottom = newProductTextBottomPadding)
-            )
+            NewProductText(Modifier.padding(bottom = newProductTextBottomPadding))
 
         Text(
             product.name,
@@ -166,17 +169,16 @@ fun ProductCard(isCompact: Boolean, product: Product, modifier: Modifier = Modif
                 .widthIn(max = maxTextWidth)
         )
 
-        Text(
+        BodyText(
             product.description,
-            style = MaterialTheme.typography.labelLarge,
-            color = AppColors.MediumGrey,
-            textAlign = TextAlign.Center,
             modifier = Modifier
                 .padding(bottom = 24.dp)
                 .widthIn(max = maxTextWidth),
         )
 
-        SeeProductFilledButton({})
+        SeeProductFilledButton({
+            onProductCLick(product.id)
+        })
     }
 }
 

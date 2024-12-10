@@ -3,6 +3,7 @@ package com.museady.cmp.ecommerce.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import androidx.navigation.navOptions
 import com.museady.cmp.ecommerce.core.entity.Category
 
 /**
@@ -28,6 +29,7 @@ fun AppNavHost(
         val topLevelNavOptions by lazy {
             navigationState.topLevelNavOptions
         }
+        val productNavOptions = navOptions {}
 
         fun navigateToSpecificCategory(category: Category) {
             with(navController) {
@@ -41,21 +43,44 @@ fun AppNavHost(
         }
 
         homeScreen(
-            isCompact
-        ) { category ->
+            isCompact, { category ->
             navigateToSpecificCategory(category)
+        }){productId ->
+            navController.navigateToProductDetails(productId, navOptions = { productNavOptions })
         }
 
-        headphoneScreen(isCompact) { category ->
+        headphoneScreen(isCompact, { category ->
             navigateToSpecificCategory(category)
+        }) { productId ->
+            navController.navigateToProductDetails(productId, navOptions = { productNavOptions })
+
         }
 
-        speakersScreen(isCompact) { category ->
+        speakersScreen(isCompact, { category ->
             navigateToSpecificCategory(category)
+        }) { productId ->
+            navController.navigateToProductDetails(productId, navOptions = { productNavOptions })
+
+        }
+        earphonesScreen(isCompact, { category ->
+            navigateToSpecificCategory(category)
+        }) { productId ->
+            navController.navigateToProductDetails(productId, navOptions = { productNavOptions })
+
         }
 
-        earphonesScreen(isCompact) { category ->
-            navigateToSpecificCategory(category)
-        }
+        productDetailsScreen(isCompact, onOtherProductClick = {
+            navController.navigateToProductDetails(it) {
+                navOptions {
+//                    popUpTo(navController.graph.findla().id) {
+//                        saveState = true
+//                    }
+//                    launchSingleTop = true
+//                    restoreState = true
+                }
+            }
+        }, onCategoryClick = {
+            navigateToSpecificCategory(it)
+        })
     }
 }
