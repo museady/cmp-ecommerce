@@ -11,15 +11,41 @@
     <!-- Navigation -->
     <string name="home_title">Home</string>
 
+    <!-- TopAppbar -->
+    <string name="cd_top_appbar_menu_button">open menu</string>
+    <string name="cd_top_appbar_cart_button">open cart</string>
+
     <!-- Header -->
     <string name="header_title">XX99 MARK II HEADPHONES</string>
     <string name="header_description">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.</string>
     <string name="header_button_text">SEE PRODUCT</string>
 
+    <!-- HomeScreen -->
+    <string name="new_product_name">XX99 MARK II\nHEADPHONES</string>
+    <string name="new_product_description">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.</string>
+    <string name="home_best_gear_title">BRINGING YOU THE BEST AUDIO GEAR</string>
+    <string name="home_best_gear_desc">Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment.</string>
+    <string name="copy_right_txt">Copyright 2021. All Rights Reserved</string>
+    <string name="mobile_split_after_word">THE</string>
+    <string name="tablet_split_after_word">BEST</string>
+    <string name="footer_word_to_highlight">BEST</string>
+
     <!-- Featured Product -->
     <string name="featured_product_title">ZX9 SPEAKER</string>
     <string name="featured_product_description">Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</string>
     <string name="featured_product_button_text">SEE PRODUCT</string>
+
+    <!-- Products -->
+    <string name="zx9_speaker_name">ZX9 SPEAKER</string>
+    <string name="zx9_speaker_desc">Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</string>
+    <string name="zx7_speaker_name">ZX7 SPEAKER</string>
+    <string name="yx1_earphones_name">YX1 EARPHONES</string>
+
+    <!-- Product Details -->
+    <string name="add_to_cart">ADD TO CART</string>
+    <string name="features">FEATURES</string>
+    <string name="in_the_box">IN THE BOX</string>
+    <string name="you_may_also_like">YOU MAY ALSO LIKE</string>
 
     <!-- About -->
     <string name="about_header">BRINGING YOU THE BEST AUDIO GEAR</string>
@@ -36,24 +62,4 @@
 
     <!-- TextField -->
     <string name="wrong_format">Wrong Format!</string>
-
-    <!-- HomeScreen -->
-    <string name="new_product_name">XX99 MARK II\nHEADPHONES</string>
-    <string name="new_product_description">Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.</string>
-    <string name="home_best_gear_title">BRINGING YOU THE BEST AUDIO GEAR</string>
-    <string name="home_best_gear_desc">Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment.</string>
-    <string name="copy_right_txt">Copyright 2021. All Rights Reserved</string>
-    <string name="mobile_split_after_word">THE</string>
-    <string name="tablet_split_after_word">BEST</string>
-    <string name="footer_word_to_highlight">BEST</string>
-
-    <!-- TopAppbar -->
-    <string name="cd_top_appbar_menu_button">open menu</string>
-    <string name="cd_top_appbar_cart_button">open cart</string>
-
-    <!-- Products -->
-    <string name="zx9_speaker_name">ZX9 SPEAKER</string>
-    <string name="zx9_speaker_desc">Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</string>
-    <string name="zx7_speaker_name">ZX7 SPEAKER</string>
-    <string name="yx1_earphones_name">YX1 EARPHONES</string>
 </resources>

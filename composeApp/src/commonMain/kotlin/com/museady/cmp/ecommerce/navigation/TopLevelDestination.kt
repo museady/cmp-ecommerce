@@ -38,5 +38,5 @@ enum class TopLevelDestination(
         unselectedIcon = AppIcons.Earphone,
         titleTextId = Category.EARPHONES.nameStringRes,
         route = EarphonesRoute::class
-    )
+    ),
 }

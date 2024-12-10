@@ -73,7 +73,6 @@ private fun MobileTopAppbar(
             )
         },
         colors = TopAppBarColors,
-        expandedHeight = 76.dp
     )
 }
 
@@ -99,7 +98,6 @@ private fun TabletTopAppbar(
             )
         },
         colors = TopAppBarColors,
-        expandedHeight = 86.dp
     )
 }
 

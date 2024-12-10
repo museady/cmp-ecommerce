@@ -68,14 +68,15 @@ private fun String.splitTextBySpace() = split(" ").joinToString("\n")
 fun HomeScreen(
     isCompact: Boolean,
     navigateToCategory: (category: Category) -> Unit,
+    navigateToProduct: (id: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()
     Column(modifier.verticalScroll(scrollState)) {
         TopAppBarDivider(horizontalPadding = if (isCompact) 0.dp else 40.dp)
-        NewProductCard(isCompact)
+        NewProductCard(isCompact, navigateToProduct)
         Spacer(Modifier.height(if (isCompact) 40.dp else 96.dp))
-        HomeContent(isCompact = isCompact, navigateToCategory)
+        HomeContent(isCompact = isCompact, navigateToCategory, navigateToProduct)
         AppFooter(isCompact)
     }
 }
@@ -83,14 +84,15 @@ fun HomeScreen(
 @Composable
 private fun HomeContent(
     isCompact: Boolean,
-    onCategoryClick: (category: Category) -> Unit
+    onCategoryClick: (category: Category) -> Unit,
+    onSeeProductClick: (id: Int) -> Unit
 ) {
     val horizontal = if (isCompact) 24.dp else 40.dp
     val vertical = if (isCompact) 120.dp else 96.dp
     Column(modifier = Modifier.padding(horizontal = horizontal)) {
         CategoryList(isCompact = isCompact, onCategoryClick = onCategoryClick)
         Spacer(Modifier.height(vertical))
-        FeaturedProducts(isCompact = isCompact)
+        FeaturedProducts(isCompact = isCompact, onSeeProductClick)
         Spacer(Modifier.height(vertical))
     }
 }
@@ -98,7 +100,7 @@ private fun HomeContent(
 @Composable
 fun NewProductCard(
     isCompact: Boolean,
-    onSeeProductClick: () -> Unit = {},
+    onSeeProductClick: (id: Int) -> Unit,
 ) {
     val imageRes =
         if (isCompact) Res.drawable.mobile_home_image_header else Res.drawable.tablet_home_image_header
@@ -106,7 +108,7 @@ fun NewProductCard(
     Box(modifier = Modifier.fillMaxWidth()) {
         NewProductImage(imageRes = imageRes)
         GradientBackgroundOverlay()
-        NewProductContent(isCompact = isCompact, onSeeProductClick = onSeeProductClick)
+        NewProductContent(isCompact = isCompact, onSeeProductClick = { onSeeProductClick(4) })
     }
 }
 
@@ -135,14 +137,23 @@ fun NewProductImage(imageRes: DrawableResource) =
     }
 
 @Composable
-fun FeaturedProducts(isCompact: Boolean) {
+fun FeaturedProducts(
+    isCompact: Boolean,
+    onSeeProductClick: (id: Int) -> Unit
+) {
     val verticalArrangement =
         if (isCompact) Arrangement.spacedBy(24.dp) else Arrangement.spacedBy(32.dp)
 
     Column(verticalArrangement = verticalArrangement) {
-        FeaturedSpeakerHighlightCard(isCompact)
-        FeaturedSpeakerCompactCard(isCompact)
-        FeaturedEarphoneCard(isCompact)
+        FeaturedSpeakerHighlightCard(isCompact) {
+            onSeeProductClick(6)
+        }
+        FeaturedSpeakerCompactCard(isCompact) {
+            onSeeProductClick(5)
+        }
+        FeaturedEarphoneCard(isCompact) {
+            onSeeProductClick(1)
+        }
     }
 }
 
@@ -181,7 +192,10 @@ fun BoxScope.NewProductContent(
 }
 
 @Composable
-private fun FeaturedSpeakerHighlightCard(isCompact: Boolean) {
+private fun FeaturedSpeakerHighlightCard(
+    isCompact: Boolean,
+    onSeeProductClick: () -> Unit
+) {
     val productImageRes =
         if (isCompact) Res.drawable.mobile_home_zx9 else Res.drawable.tablet_home_zx9
     val imageTopPadding = if (isCompact) 52.dp else 56.dp
@@ -257,7 +271,7 @@ private fun FeaturedSpeakerHighlightCard(isCompact: Boolean) {
         )
 
         SeeProductFilledButton(
-            onClick = {},
+            onClick = onSeeProductClick,
             containerColor = AppColors.PureBlack,
             modifier = Modifier.constrainAs(seeProductButton) {
                 top.linkTo(productDesc.bottom, margin = buttonMarginTop)
@@ -269,7 +283,8 @@ private fun FeaturedSpeakerHighlightCard(isCompact: Boolean) {
 }
 
 @Composable
-fun FeaturedSpeakerCompactCard(isCompact: Boolean) {
+fun FeaturedSpeakerCompactCard(isCompact: Boolean,
+                               onSeeProductClick: () -> Unit) {
     val imageRes = if (isCompact) Res.drawable.mobile_home_zx7 else Res.drawable.tablet_home_zx7
     val contentStartPadding = if (isCompact) 24.dp else 64.dp
     val textBottomPadding = if (isCompact) 24.dp else 32.dp
@@ -293,13 +308,13 @@ fun FeaturedSpeakerCompactCard(isCompact: Boolean) {
                 modifier = Modifier.padding(bottom = textBottomPadding)
             )
 
-            SeeProductOutlineButton({})
+            SeeProductOutlineButton(onSeeProductClick)
         }
     }
 }
 
 @Composable
-private fun FeaturedEarphoneCard(isCompact: Boolean) {
+private fun FeaturedEarphoneCard(isCompact: Boolean, onSeeProductClick: () -> Unit) {
     val productName = stringResource(Res.string.yx1_earphones_name)
 
     if (isCompact) {
@@ -324,7 +339,7 @@ private fun FeaturedEarphoneCard(isCompact: Boolean) {
                 )
 
                 SeeProductOutlineButton(
-                    {},
+                    onSeeProductClick,
                     modifier = Modifier.padding(bottom = 40.dp, start = 24.dp)
                 )
             }

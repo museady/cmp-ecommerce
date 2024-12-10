@@ -50,6 +50,7 @@ fun CategoryScreen(
     isCompact: Boolean,
     category: Category,
     onCategoryClick: (category: Category) -> Unit,
+    onProductCLick: (id: Int) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val categoryTitle = stringResource(category.nameStringRes)
@@ -80,7 +81,8 @@ fun CategoryScreen(
                     product,
                     modifier = Modifier
                         .padding(horizontal = if (isCompact) 24.dp else 40.dp)
-                        .padding(bottom = 120.dp)
+                        .padding(bottom = 120.dp),
+                    onProductCLick = onProductCLick
                 )
             }
 
@@ -125,7 +127,12 @@ fun CategoryHeader(
 }
 
 @Composable
-fun ProductCard(isCompact: Boolean, product: Product, modifier: Modifier = Modifier) {
+fun ProductCard(
+    isCompact: Boolean,
+    product: Product,
+    onProductCLick: (id: Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val productImageRes =
         if (isCompact) product.categoryImage.mobile else product.categoryImage.tablet
     val productImageDrawableResource = findImageByName(productImageRes)
@@ -169,7 +176,9 @@ fun ProductCard(isCompact: Boolean, product: Product, modifier: Modifier = Modif
                 .widthIn(max = maxTextWidth),
         )
 
-        SeeProductFilledButton({})
+        SeeProductFilledButton({
+            onProductCLick(product.id)
+        })
     }
 }
 

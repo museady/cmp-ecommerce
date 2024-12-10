@@ -4,43 +4,45 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Product(
-    val id: Int,
-    val slug: String,
-    val name: String,
-    val image: DeviceImages,
-    val category: String,
-    val categoryImage: DeviceImages,
-    val new: Boolean,
-    val price: Int,
-    val description: String,
-    val features: String,
-    val includes: List<Include>,
-    val gallery: Gallery,
-    val others: List<OtherProduct>
+    val id: Int = 0,
+    val slug: String ="",
+    val name: String="",
+    val image: DeviceImages = DeviceImages(),
+    val category: String = "",
+    val categoryImage: DeviceImages = DeviceImages(),
+    val new: Boolean = false,
+    val price: Int = 0,
+    val description: String = "",
+    val features: String = "",
+    val includes: List<Include> = emptyList(),
+    val gallery: Gallery = Gallery(),
+    val others: List<OtherProduct> = emptyList()
 )
+
 
 @Serializable
 data class DeviceImages(
-    val mobile: String,
-    val tablet: String
+    val mobile: String = "",
+    val tablet: String =""
 )
 
 @Serializable
 data class Include(
-    val quantity: Int,
-    val item: String
+    val quantity: Int = 0,
+    val item: String = ""
 )
 
 @Serializable
 data class Gallery(
-    val first: DeviceImages,
-    val second: DeviceImages,
-    val third: DeviceImages
+    val first: DeviceImages = DeviceImages(),
+    val second: DeviceImages = DeviceImages(),
+    val third: DeviceImages = DeviceImages()
 )
 
 @Serializable
 data class OtherProduct(
-    val slug: String,
-    val name: String,
-    val image: DeviceImages
+    val id: Int = 0,
+    val slug: String = "",
+    val name: String ="",
+    val image: DeviceImages =DeviceImages()
 )
