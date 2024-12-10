@@ -76,7 +76,11 @@ fun HomeScreen(
         TopAppBarDivider(horizontalPadding = if (isCompact) 0.dp else 40.dp)
         NewProductCard(isCompact, navigateToProduct)
         Spacer(Modifier.height(if (isCompact) 40.dp else 96.dp))
-        HomeContent(isCompact = isCompact, navigateToCategory, navigateToProduct)
+        HomeContent(
+            isCompact = isCompact,
+            onCategoryClick = navigateToCategory,
+            onSeeProductClick = navigateToProduct
+        )
         AppFooter(isCompact)
     }
 }
@@ -90,9 +94,15 @@ private fun HomeContent(
     val horizontal = if (isCompact) 24.dp else 40.dp
     val vertical = if (isCompact) 120.dp else 96.dp
     Column(modifier = Modifier.padding(horizontal = horizontal)) {
-        CategoryList(isCompact = isCompact, onCategoryClick = onCategoryClick)
+        CategoryList(
+            isCompact = isCompact,
+            onCategoryClick = onCategoryClick
+        )
         Spacer(Modifier.height(vertical))
-        FeaturedProducts(isCompact = isCompact, onSeeProductClick)
+        FeaturedProducts(
+            isCompact = isCompact,
+            onSeeProductClick = onSeeProductClick
+        )
         Spacer(Modifier.height(vertical))
     }
 }
@@ -108,7 +118,9 @@ fun NewProductCard(
     Box(modifier = Modifier.fillMaxWidth()) {
         NewProductImage(imageRes = imageRes)
         GradientBackgroundOverlay()
-        NewProductContent(isCompact = isCompact, onSeeProductClick = { onSeeProductClick(4) })
+        NewProductContent(isCompact = isCompact,
+            onSeeProductClick = { onSeeProductClick(4) }
+        )
     }
 }
 
@@ -283,8 +295,10 @@ private fun FeaturedSpeakerHighlightCard(
 }
 
 @Composable
-fun FeaturedSpeakerCompactCard(isCompact: Boolean,
-                               onSeeProductClick: () -> Unit) {
+fun FeaturedSpeakerCompactCard(
+    isCompact: Boolean,
+    onSeeProductClick: () -> Unit
+) {
     val imageRes = if (isCompact) Res.drawable.mobile_home_zx7 else Res.drawable.tablet_home_zx7
     val contentStartPadding = if (isCompact) 24.dp else 64.dp
     val textBottomPadding = if (isCompact) 24.dp else 32.dp
@@ -378,4 +392,3 @@ private fun FeaturedEarphoneCard(isCompact: Boolean, onSeeProductClick: () -> Un
         }
     }
 }
-//endregion

@@ -2,14 +2,13 @@
 <resources>
     <!-- General -->
     <string name="app_name">audiophile</string>
-    <string name="home">HOME</string>
-    <string name="headphones">HEADPHONES</string>
-    <string name="speakers">SPEAKERS</string>
-    <string name="earphones">EARPHONES</string>
     <string name="new_product">NEW PRODUCT</string>
 
     <!-- Navigation -->
     <string name="home_title">Home</string>
+    <string name="headphones_title">Headphones</string>
+    <string name="speakers_title">Speakers</string>
+    <string name="earphones_title">Earphones</string>
 
     <!-- TopAppbar -->
     <string name="cd_top_appbar_menu_button">open menu</string>
@@ -29,6 +28,11 @@
     <string name="mobile_split_after_word">THE</string>
     <string name="tablet_split_after_word">BEST</string>
     <string name="footer_word_to_highlight">BEST</string>
+
+    <!-- CategoryScreen -->
+    <string name="headphones">HEADPHONES</string>
+    <string name="speakers">SPEAKERS</string>
+    <string name="earphones">EARPHONES</string>
 
     <!-- Featured Product -->
     <string name="featured_product_title">ZX9 SPEAKER</string>

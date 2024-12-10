@@ -22,14 +22,14 @@ fun NavGraphBuilder.homeScreen(
     navigateToProduct: (id: Int) -> Unit
 ) {
     composable<HomeRoute> {
-        HomeScreen(isCompat, navigateToCategory,navigateToProduct)
+        HomeScreen(isCompat, navigateToCategory, navigateToProduct)
     }
 }
 
 @Serializable
 object HeadphonesRoute
 
-fun NavController.navigateToHeadphones(navOptions: NavOptions? = null) =
+fun NavController.navigateToHeadphones(navOptions: NavOptions) =
     navigate(route = HeadphonesRoute, navOptions)
 
 fun NavGraphBuilder.headphoneScreen(
@@ -51,7 +51,7 @@ fun NavGraphBuilder.headphoneScreen(
 @Serializable
 object SpeakersRoute
 
-fun NavController.navigateToSpeakers(navOptions: NavOptions? = null) =
+fun NavController.navigateToSpeakers(navOptions: NavOptions) =
     navigate(route = SpeakersRoute, navOptions)
 
 fun NavGraphBuilder.speakersScreen(
@@ -62,7 +62,7 @@ fun NavGraphBuilder.speakersScreen(
     composable<SpeakersRoute> {
         CategoryScreen(
             isCompact = isCompat,
-            category = Category.SPEAKRS,
+            category = Category.SPEAKERS,
             onCategoryClick = navigateToCategory,
             onProductCLick = navigateToProduct
         )
@@ -72,14 +72,13 @@ fun NavGraphBuilder.speakersScreen(
 @Serializable
 object EarphonesRoute
 
-fun NavController.navigateToEarphones(navOptions: NavOptions? = null) =
+fun NavController.navigateToEarphones(navOptions: NavOptions) =
     navigate(route = EarphonesRoute, navOptions)
 
 fun NavGraphBuilder.earphonesScreen(
     isCompat: Boolean,
     navigateToCategory: (category: Category) -> Unit,
     navigateToProduct: (id: Int) -> Unit,
-
     ) {
     composable<EarphonesRoute> {
         CategoryScreen(
@@ -96,11 +95,9 @@ data class ProductDetailsRoute(val productId: Int)
 
 fun NavController.navigateToProductDetails(
     productId: Int,
-    navOptions: NavOptionsBuilder.() -> Unit
+    navOptions: NavOptions
 ) {
-    navigate(route = ProductDetailsRoute(productId)) {
-        navOptions()
-    }
+    navigate(route = ProductDetailsRoute(productId),navOptions)
 }
 
 fun NavGraphBuilder.productDetailsScreen(

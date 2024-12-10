@@ -36,7 +36,7 @@ fun AppNavHost(
 
                 when (category) {
                     Category.HEADPHONES -> navigateToHeadphones(topLevelNavOptions)
-                    Category.SPEAKRS -> navigateToSpeakers(topLevelNavOptions)
+                    Category.SPEAKERS -> navigateToSpeakers(topLevelNavOptions)
                     Category.EARPHONES -> navigateToEarphones(topLevelNavOptions)
                 }
             }
@@ -44,41 +44,31 @@ fun AppNavHost(
 
         homeScreen(
             isCompact, { category ->
-            navigateToSpecificCategory(category)
-        }){productId ->
-            navController.navigateToProductDetails(productId, navOptions = { productNavOptions })
+                navigateToSpecificCategory(category)
+            }) { productId ->
+            navController.navigateToProductDetails(productId, productNavOptions)
         }
 
         headphoneScreen(isCompact, { category ->
             navigateToSpecificCategory(category)
         }) { productId ->
-            navController.navigateToProductDetails(productId, navOptions = { productNavOptions })
-
+            navController.navigateToProductDetails(productId, productNavOptions)
         }
 
         speakersScreen(isCompact, { category ->
             navigateToSpecificCategory(category)
         }) { productId ->
-            navController.navigateToProductDetails(productId, navOptions = { productNavOptions })
-
+            navController.navigateToProductDetails(productId, productNavOptions)
         }
+
         earphonesScreen(isCompact, { category ->
             navigateToSpecificCategory(category)
         }) { productId ->
-            navController.navigateToProductDetails(productId, navOptions = { productNavOptions })
-
+            navController.navigateToProductDetails(productId, productNavOptions)
         }
 
-        productDetailsScreen(isCompact, onOtherProductClick = {
-            navController.navigateToProductDetails(it) {
-                navOptions {
-//                    popUpTo(navController.graph.findla().id) {
-//                        saveState = true
-//                    }
-//                    launchSingleTop = true
-//                    restoreState = true
-                }
-            }
+        productDetailsScreen(isCompact, onOtherProductClick = { productId ->
+            navController.navigateToProductDetails(productId, productNavOptions)
         }, onCategoryClick = {
             navigateToSpecificCategory(it)
         })

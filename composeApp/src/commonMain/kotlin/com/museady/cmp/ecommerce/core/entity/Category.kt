@@ -18,7 +18,7 @@ enum class Category(
         Res.string.headphones,
         Res.drawable.cateogry_thumbnail_headphones
     ),
-    SPEAKRS(
+    SPEAKERS(
         Res.string.speakers,
         Res.drawable.cateogry_thumbnail_speakers
     ),

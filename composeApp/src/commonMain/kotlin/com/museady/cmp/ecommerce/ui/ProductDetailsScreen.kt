@@ -86,7 +86,7 @@ fun ProductDetailsScreen(
         Column(
             modifier = modifier
                 .padding(horizontal = if (isCompat) 24.dp else 40.dp)
-                .verticalScroll(scrollState),
+                .verticalScroll(scrollState)
         ) {
             Spacer(modifier = Modifier.height(32.dp))
             ProductDetailsHeader(

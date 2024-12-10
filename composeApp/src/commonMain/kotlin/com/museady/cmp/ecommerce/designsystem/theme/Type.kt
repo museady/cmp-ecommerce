@@ -129,7 +129,7 @@ val AppTypography
         labelSmall = TextStyle(
             fontFamily = manropeFontFamily,
             fontWeight = FontWeight.Bold,
-            fontSize = 12.sp,
+            fontSize = 11.sp,
             letterSpacing = .3.sp,
             lineHeight = 16.sp
         )
