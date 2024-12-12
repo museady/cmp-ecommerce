@@ -72,7 +72,7 @@ fun CategoryList(
 }
 
 @Composable
-fun CategoryCard(
+private fun CategoryCard(
     title: String,
     imageResource: Painter,
     onShopClick: () -> Unit,

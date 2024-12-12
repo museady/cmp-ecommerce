@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +28,6 @@ import androidx.compose.ui.unit.sp
 import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.core.entity.Product
 import com.museady.cmp.ecommerce.core.json.loadData
-import com.museady.cmp.ecommerce.designsystem.component.AppFooter
 import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
 import com.museady.cmp.ecommerce.designsystem.component.NewProductText
@@ -65,17 +62,13 @@ fun CategoryScreen(
         }
     }
 
-    if (products.isNotEmpty())
-        LazyColumn {
-            item {
-                TopAppBarDivider(horizontalPadding = if (isCompact) 0.dp else 40.dp)
-            }
-            item {
-                CategoryHeader(title = categoryTitle, isCompact = isCompact)
-            }
-            item { Spacer(Modifier.height(if (isCompact) 64.dp else 120.dp)) }
+    if (products.isNotEmpty()) {
+        Column {
+            TopAppBarDivider(horizontalPadding = if (isCompact) 0.dp else 40.dp)
+            CategoryHeader(title = categoryTitle, isCompact = isCompact)
+            Spacer(Modifier.height(if (isCompact) 64.dp else 120.dp))
 
-            items(products, key = { it.id }) { product ->
+            products.forEach { product ->
                 ProductCard(
                     isCompact,
                     product,
@@ -86,21 +79,16 @@ fun CategoryScreen(
                 )
             }
 
-            item {
-                CategoryList(
-                    isCompact,
-                    onCategoryClick = onCategoryClick,
-                    hideCategory = category,
-                    modifier = Modifier
-                        .padding(horizontal = if (isCompact) 24.dp else 40.dp)
-                        .padding(bottom = 120.dp)
-                )
-            }
-
-            item {
-                AppFooter(isCompact)
-            }
+            CategoryList(
+                isCompact,
+                onCategoryClick = onCategoryClick,
+                hideCategory = category,
+                modifier = Modifier
+                    .padding(horizontal = if (isCompact) 24.dp else 40.dp)
+                    .padding(bottom = 120.dp)
+            )
         }
+    }
 }
 
 @Composable

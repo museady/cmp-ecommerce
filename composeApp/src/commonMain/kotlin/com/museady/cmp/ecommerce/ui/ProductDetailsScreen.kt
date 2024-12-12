@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -42,7 +40,6 @@ import com.museady.cmp.ecommerce.core.entity.Include
 import com.museady.cmp.ecommerce.core.entity.OtherProduct
 import com.museady.cmp.ecommerce.core.entity.Product
 import com.museady.cmp.ecommerce.core.json.loadData
-import com.museady.cmp.ecommerce.designsystem.component.AppFooter
 import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
 import com.museady.cmp.ecommerce.designsystem.component.FilledButton
@@ -79,14 +76,12 @@ fun ProductDetailsScreen(
             product = loadData().first { it.id == productId }
         }
     }
-    val scrollState = rememberScrollState()
     var quantity by remember { mutableIntStateOf(0) }
 
     if (product.id != 0)
         Column(
             modifier = modifier
                 .padding(horizontal = if (isCompat) 24.dp else 40.dp)
-                .verticalScroll(scrollState)
         ) {
             Spacer(modifier = Modifier.height(32.dp))
             ProductDetailsHeader(
@@ -134,8 +129,6 @@ fun ProductDetailsScreen(
                 onCategoryClick = onCategoryClick,
                 modifier = Modifier.padding(vertical = 120.dp)
             )
-
-            AppFooter(isCompat)
         }
 }
 

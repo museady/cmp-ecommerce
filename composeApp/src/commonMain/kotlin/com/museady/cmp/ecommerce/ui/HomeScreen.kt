@@ -1,6 +1,6 @@
 package com.museady.cmp.ecommerce.ui
 
-import  androidx.compose.foundation.Image
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,9 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.museady.cmp.ecommerce.core.entity.Category
-import com.museady.cmp.ecommerce.designsystem.component.AppFooter
 import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
@@ -71,8 +68,7 @@ fun HomeScreen(
     navigateToProduct: (id: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val scrollState = rememberScrollState()
-    Column(modifier.verticalScroll(scrollState)) {
+    Column(modifier) {
         TopAppBarDivider(horizontalPadding = if (isCompact) 0.dp else 40.dp)
         NewProductCard(isCompact, navigateToProduct)
         Spacer(Modifier.height(if (isCompact) 40.dp else 96.dp))
@@ -81,7 +77,6 @@ fun HomeScreen(
             onCategoryClick = navigateToCategory,
             onSeeProductClick = navigateToProduct
         )
-        AppFooter(isCompact)
     }
 }
 

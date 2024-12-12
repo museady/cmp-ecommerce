@@ -3,15 +3,16 @@ package com.museady.cmp.ecommerce.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import androidx.navigation.navOptions
-import com.museady.cmp.ecommerce.core.entity.Category
 
 /**
- * Top-level navigation graph. Navigation is organized as explained at
- * https://d.android.com/jetpack/compose/nav-adaptive
+ * Configures the `NavHost` with the app's navigation graph,
+ * defining the routes and their associated composables for the Home, Category,
+ * and Product Details screens. It uses the provided `NavigationState` to manage
+ * navigation actions and maintains navigation behavior across the app.
  *
- * The navigation graph defined in this file defines the different top level routes. Navigation
- * within each route is handled using state and Back Handlers.
+ * @param navigationState The state object that holds the `NavController` and handles navigation actions.
+ * @param isCompact Determines the UI layout mode (compact or expanded).
+ * @param modifier The `Modifier` applied to the `NavHost` for customization.
  */
 @Composable
 fun AppNavHost(
@@ -26,51 +27,22 @@ fun AppNavHost(
         startDestination = HomeRoute,
         modifier = modifier,
     ) {
-        val topLevelNavOptions by lazy {
-            navigationState.topLevelNavOptions
-        }
-        val productNavOptions = navOptions {}
-
-        fun navigateToSpecificCategory(category: Category) {
-            with(navController) {
-
-                when (category) {
-                    Category.HEADPHONES -> navigateToHeadphones(topLevelNavOptions)
-                    Category.SPEAKERS -> navigateToSpeakers(topLevelNavOptions)
-                    Category.EARPHONES -> navigateToEarphones(topLevelNavOptions)
-                }
-            }
-        }
-
         homeScreen(
-            isCompact, { category ->
-                navigateToSpecificCategory(category)
-            }) { productId ->
-            navController.navigateToProductDetails(productId, productNavOptions)
-        }
+            isCompat = isCompact,
+            onCategoryClick = navigationState::navigateToCategory,
+            onProductClick = navigationState::navigateToProductDetails
+        )
 
-        headphoneScreen(isCompact, { category ->
-            navigateToSpecificCategory(category)
-        }) { productId ->
-            navController.navigateToProductDetails(productId, productNavOptions)
-        }
+        categoryScreen(
+            isCompat = isCompact,
+            onCategoryClick = navigationState::navigateToCategory,
+            onProductClick = navigationState::navigateToProductDetails
+        )
 
-        speakersScreen(isCompact, { category ->
-            navigateToSpecificCategory(category)
-        }) { productId ->
-            navController.navigateToProductDetails(productId, productNavOptions)
-        }
-
-        earphonesScreen(isCompact, { category ->
-            navigateToSpecificCategory(category)
-        }) { productId ->
-            navController.navigateToProductDetails(productId, productNavOptions)
-        }
-
-        productDetailsScreen(isCompact, onOtherProductClick = { productId ->
-            navController.navigateToProductDetails(productId, productNavOptions)
-        }, onCategoryClick = {
-            navigateToSpecificCategory(it)
-        })
+        productDetailsScreen(
+            isCompat = isCompact,
+            onCategoryClick = navigationState::navigateToCategory,
+            onOtherProductClick = navigationState::navigateToProductDetails
+        )
     }
 }

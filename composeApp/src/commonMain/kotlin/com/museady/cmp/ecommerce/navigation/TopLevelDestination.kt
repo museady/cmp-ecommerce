@@ -11,34 +11,22 @@ import org.jetbrains.compose.resources.StringResource
 import kotlin.reflect.KClass
 
 enum class TopLevelDestination(
-    val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector,
-    val titleTextId: StringResource,
     val route: KClass<*>,
-    val baseRoute: KClass<*> = route,
 ) {
     HOME(
-        selectedIcon = AppIcons.HomeFilled,
-        unselectedIcon = AppIcons.Home,
-        titleTextId = Res.string.home_title,
         route = HomeRoute::class
     ),
     HEADPHONES(
-        selectedIcon = AppIcons.HeadphonesFilled,
-        unselectedIcon = AppIcons.Headphones,
-        titleTextId = Res.string.headphones_title,
-        route = HeadphonesRoute::class
+
+        route = CategoryRoute::class
     ),
     SPEAKERS(
-        selectedIcon = AppIcons.SpeakerFilled,
-        unselectedIcon = AppIcons.Speakers,
-        titleTextId = Res.string.speakers_title,
-        route = SpeakersRoute::class
+
+
+        route = CategoryRoute::class
     ),
     EARPHONES(
-        selectedIcon = AppIcons.EarphoneFilled,
-        unselectedIcon = AppIcons.Earphone,
-        titleTextId = Res.string.earphones_title,
-        route = EarphonesRoute::class
+
+        route = CategoryRoute::class
     ),
 }

@@ -5,10 +5,10 @@
     <string name="new_product">NEW PRODUCT</string>
 
     <!-- Navigation -->
-    <string name="home_title">Home</string>
-    <string name="headphones_title">Headphones</string>
-    <string name="speakers_title">Speakers</string>
-    <string name="earphones_title">Earphones</string>
+    <string name="home_title">HOME</string>
+    <string name="headphones_title">HEADPHONES</string>
+    <string name="speakers_title">SPEAKERS</string>
+    <string name="earphones_title">EARPHONES</string>
 
     <!-- TopAppbar -->
     <string name="cd_top_appbar_menu_button">open menu</string>
