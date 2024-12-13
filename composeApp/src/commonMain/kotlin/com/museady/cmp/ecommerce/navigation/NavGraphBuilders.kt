@@ -8,11 +8,8 @@ import com.museady.cmp.ecommerce.ui.HomeScreen
 import com.museady.cmp.ecommerce.ui.ProductDetailsScreen
 
 /**
- * Sets up the navigation graph for the app's primary screens: Home, Category, and Product Details.
- *
- * This file centralizes the navigation logic, ensuring seamless transitions between screens and
- * passing the necessary data to each destination. It defines composable functions for adding
- * these screens to the navigation graph.
+ * This file Sets up the navigation graph for the app's primary screens: Home, Headphones, Speakers,
+ * and Product Details.
  *
  */
 
@@ -26,19 +23,45 @@ fun NavGraphBuilder.homeScreen(
     }
 }
 
-fun NavGraphBuilder.categoryScreen(
+fun NavGraphBuilder.headphonesScreen(
     isCompat: Boolean,
     onCategoryClick: (category: Category) -> Unit,
-    onProductClick: (id: Int) -> Unit,
+    onProductClick: (id: Int) -> Unit
 ) {
-    composable<CategoryRoute> { backStackEntry ->
-        val category = Category.entries.first {
-            it.ordinal == backStackEntry.arguments?.getInt("categoryOrdinal")
-        }
-
+    composable<HeadphonesRoute> {
         CategoryScreen(
             isCompact = isCompat,
-            category = category,
+            category = Category.HEADPHONES,
+            onCategoryClick = onCategoryClick,
+            onProductCLick = onProductClick
+        )
+    }
+}
+
+fun NavGraphBuilder.speakersScreen(
+    isCompat: Boolean,
+    onCategoryClick: (category: Category) -> Unit,
+    onProductClick: (id: Int) -> Unit
+) {
+    composable<SpeakersRoute> {
+        CategoryScreen(
+            isCompact = isCompat,
+            category = Category.SPEAKERS,
+            onCategoryClick = onCategoryClick,
+            onProductCLick = onProductClick
+        )
+    }
+}
+
+fun NavGraphBuilder.earphonesScreen(
+    isCompat: Boolean,
+    onCategoryClick: (category: Category) -> Unit,
+    onProductClick: (id: Int) -> Unit
+) {
+    composable<EarphonesRoute> {
+        CategoryScreen(
+            isCompact = isCompat,
+            category = Category.EARPHONES,
             onCategoryClick = onCategoryClick,
             onProductCLick = onProductClick
         )

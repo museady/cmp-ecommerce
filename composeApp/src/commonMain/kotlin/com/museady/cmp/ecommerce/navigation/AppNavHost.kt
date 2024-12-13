@@ -33,7 +33,19 @@ fun AppNavHost(
             onProductClick = navigationState::navigateToProductDetails
         )
 
-        categoryScreen(
+        speakersScreen(
+            isCompat = isCompact,
+            onCategoryClick = navigationState::navigateToCategory,
+            onProductClick = navigationState::navigateToProductDetails
+        )
+
+        earphonesScreen(
+            isCompat = isCompact,
+            onCategoryClick = navigationState::navigateToCategory,
+            onProductClick = navigationState::navigateToProductDetails
+        )
+
+        headphonesScreen(
             isCompat = isCompact,
             onCategoryClick = navigationState::navigateToCategory,
             onProductClick = navigationState::navigateToProductDetails
