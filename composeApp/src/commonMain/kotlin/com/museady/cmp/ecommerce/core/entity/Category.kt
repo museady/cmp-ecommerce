@@ -11,9 +11,9 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 
 enum class Category(
-    val nameStringRes: StringResource,
-    val thumbnail: DrawableResource
-){
+    val titleRes: StringResource,
+    val drawableRes: DrawableResource
+) {
     HEADPHONES(
         Res.string.headphones,
         Res.drawable.cateogry_thumbnail_headphones
@@ -27,3 +27,4 @@ enum class Category(
         Res.drawable.cateogry_thumbnail_earphones
     )
 }
+

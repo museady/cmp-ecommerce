@@ -32,7 +32,6 @@ import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
 import com.museady.cmp.ecommerce.designsystem.component.NewProductText
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
-import com.museady.cmp.ecommerce.designsystem.component.TopAppBarDivider
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import com.museady.cmp.ecommerce.designsystem.theme.AppShapes.DefaultCardShape
 import ecommerce_cmp.composeapp.generated.resources.Res
@@ -50,7 +49,7 @@ fun CategoryScreen(
     onProductCLick: (id: Int) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
-    val categoryTitle = stringResource(category.nameStringRes)
+    val categoryTitle = stringResource(category.titleRes)
 
     //Todo Later to be extract the loading in viewmodel
     var products by remember { mutableStateOf(emptyList<Product>()) }
@@ -64,8 +63,6 @@ fun CategoryScreen(
 
     if (products.isNotEmpty()) {
         Column {
-            TopAppBarDivider(horizontalPadding = if (isCompact) 0.dp else 40.dp)
-            CategoryHeader(title = categoryTitle, isCompact = isCompact)
             Spacer(Modifier.height(if (isCompact) 64.dp else 120.dp))
 
             products.forEach { product ->
@@ -88,29 +85,6 @@ fun CategoryScreen(
                     .padding(bottom = 120.dp)
             )
         }
-    }
-}
-
-@Composable
-fun CategoryHeader(
-    title: String,
-    isCompact: Boolean,
-) {
-    val textStyle = with(MaterialTheme.typography) {
-        if (isCompact) headlineLarge else displayMedium.copy(letterSpacing = 1.43.sp)
-    }
-    val verticalPadding = if (isCompact) 32.dp else 76.dp
-
-    Box(
-        Modifier.fillMaxWidth().background(AppColors.NeutralDark),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = title,
-            style = textStyle,
-            color = AppColors.PureWhite,
-            modifier = Modifier.padding(vertical = verticalPadding)
-        )
     }
 }
 

@@ -21,11 +21,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
-import ecommerce_cmp.composeapp.generated.resources.Res
-import ecommerce_cmp.composeapp.generated.resources.cateogry_thumbnail_speakers
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * A composable for displaying a list of product categories.
@@ -47,8 +44,8 @@ fun CategoryList(
             categories.forEach { category ->
                 if (hideCategory == category) return@forEach
                 CategoryCard(
-                    title = stringResource(category.nameStringRes),
-                    imageResource = painterResource(category.thumbnail),
+                    title = stringResource(category.titleRes),
+                    imageResource = painterResource(category.drawableRes),
                     onShopClick = { onCategoryClick(category) }
                 )
             }
@@ -61,8 +58,8 @@ fun CategoryList(
             categories.forEach { category ->
                 if (hideCategory == category) return@forEach
                 CategoryCard(
-                    title = stringResource(category.nameStringRes),
-                    imageResource = painterResource(category.thumbnail),
+                    title = stringResource(category.titleRes),
+                    imageResource = painterResource(category.drawableRes),
                     onShopClick = { onCategoryClick(category) },
                     modifier = Modifier.weight(1f)
                 )
@@ -117,15 +114,5 @@ fun CategoryCardImage(
         contentDescription = contentDescription,
         modifier = modifier.size(140.dp),
         contentScale = ContentScale.Inside
-    )
-}
-
-@Preview
-@Composable
-fun PreviewCategoryCard() {
-    CategoryCard(
-        imageResource = painterResource(Res.drawable.cateogry_thumbnail_speakers),
-        title = "Headphones",
-        onShopClick = {}
     )
 }
