@@ -35,7 +35,6 @@ import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductOutlineButton
-import com.museady.cmp.ecommerce.designsystem.component.TopAppBarDivider
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import com.museady.cmp.ecommerce.designsystem.theme.AppShapes.DefaultCardShape
 import ecommerce_cmp.composeapp.generated.resources.Res
@@ -66,10 +65,8 @@ fun HomeScreen(
     isCompact: Boolean,
     navigateToCategory: (category: Category) -> Unit,
     navigateToProduct: (id: Int) -> Unit,
-    modifier: Modifier = Modifier
 ) {
-    Column(modifier) {
-        TopAppBarDivider(horizontalPadding = if (isCompact) 0.dp else 40.dp)
+    Column {
         NewProductCard(isCompact, navigateToProduct)
         Spacer(Modifier.height(if (isCompact) 40.dp else 96.dp))
         HomeContent(
