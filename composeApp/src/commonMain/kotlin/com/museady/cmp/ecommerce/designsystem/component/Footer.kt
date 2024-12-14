@@ -31,7 +31,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import com.museady.cmp.ecommerce.designsystem.theme.AppShapes.DefaultCardShape
 import com.museady.cmp.ecommerce.navigation.TopLevelDestination
@@ -89,23 +88,19 @@ private fun highlightWordInText(
 @Composable
 fun Footer(
     isCompact: Boolean,
-    navigateToHome: () -> Unit,
-    navigateToCategory:(Category) -> Unit,
+    onTopLevelDestinationClick: (TopLevelDestination) -> Unit,
     browseSocialMediaWebsite: (String) -> Unit,
 ) {
-
     if (isCompact) {
         MobileFooter(
             isCompact,
-            navigateToHome,
-            navigateToCategory,
+            onTopLevelDestinationClick,
             browseSocialMediaWebsite,
         )
     } else {
         TabletFooter(
             isCompact,
-            navigateToHome,
-            navigateToCategory,
+            onTopLevelDestinationClick,
             browseSocialMediaWebsite,
         )
     }
@@ -114,8 +109,7 @@ fun Footer(
 @Composable
 fun MobileFooter(
     isCompact: Boolean,
-    navigateToHome: () -> Unit,
-    navigateToCategory:(Category) -> Unit,
+    onTopLevelDestination: (TopLevelDestination) -> Unit,
     browseSocialMediaWebsite: (String) -> Unit,
 ) {
     Column(
@@ -134,8 +128,7 @@ fun MobileFooter(
             Spacer(Modifier.height(48.dp))
             FooterNavigationContainer(
                 isCompact = isCompact,
-                navigateToHome,
-                navigateToCategory
+                onTopLevelDestinationClick = onTopLevelDestination
             )
             Spacer(Modifier.height(32.dp))
             FooterCopyright()
@@ -153,8 +146,7 @@ fun MobileFooter(
 @Composable
 fun TabletFooter(
     isCompact: Boolean,
-    navigateToHome: () -> Unit,
-    navigateToCategory:(Category) -> Unit,
+    onTopLevelDestinationClick: (TopLevelDestination) -> Unit,
     browseSocialMediaWebsite: (String) -> Unit,
 ) {
     Column(
@@ -173,8 +165,7 @@ fun TabletFooter(
             Spacer(Modifier.height(4.dp))
             FooterNavigationContainer(
                 isCompact,
-                navigateToHome,
-                navigateToCategory
+                onTopLevelDestinationClick
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -309,43 +300,43 @@ private fun HeroDescription(modifier: Modifier = Modifier) {
 @Composable
 fun FooterNavigationContainer(
     isCompact: Boolean,
-    navigateToHome: () -> Unit,
-    navigateToCategory:(Category) -> Unit) {
+    onTopLevelDestinationClick: (TopLevelDestination) -> Unit,
+) {
     if (isCompact) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            FooterNavigationItems(navigateToHome,navigateToCategory)
+            FooterNavigationItems(onTopLevelDestinationClick)
         }
     } else {
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            FooterNavigationItems(navigateToHome,navigateToCategory)
+            FooterNavigationItems(onTopLevelDestinationClick)
         }
     }
 }
 
 @Composable
 fun FooterNavigationItems(
-    navigateToHome: () -> Unit,
-    navigateToCategory:(Category) -> Unit) {
+    onTopLevelDestinationClick: (TopLevelDestination) -> Unit
+) {
     FooterTextButton(
         text = stringResource(Res.string.home_title),
-        onClick = { navigateToHome() }
+        onClick = { onTopLevelDestinationClick(TopLevelDestination.HOME) }
     )
     FooterTextButton(
         text = stringResource(Res.string.headphones_title),
-        onClick = { navigateToCategory(Category.HEADPHONES) }
+        onClick = { onTopLevelDestinationClick(TopLevelDestination.HEADPHONES) }
     )
     FooterTextButton(
         text = stringResource(Res.string.speakers_title),
-        onClick = { navigateToCategory(Category.SPEAKERS) }
+        onClick = { onTopLevelDestinationClick(TopLevelDestination.SPEAKERS) }
     )
     FooterTextButton(
         text = stringResource(Res.string.earphones_title),
-        onClick = {navigateToCategory(Category.EARPHONES) }
+        onClick = { onTopLevelDestinationClick(TopLevelDestination.EARPHONES) }
     )
 }
 
