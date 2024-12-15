@@ -50,15 +50,12 @@ kotlin {
             implementation(libs.compose.material3.window.size)
             implementation(libs.compose.material3.adaptive)
             implementation(libs.navigation.compose)
-            //Voyager
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.tab.navigator)
             //Datetime
             implementation(libs.kotlinx.datetime)
             //Logger
             implementation(libs.napier)
             //Constraint Layout
-            implementation(libs.constraintlayout.compos)
+            implementation(libs.constraintlayout.compose)
             //Coroutines
             implementation(libs.kotlinx.coroutines.core)
             //Logger
