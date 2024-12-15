@@ -52,6 +52,7 @@ import com.museady.cmp.ecommerce.navigation.AppNavHost
 import com.museady.cmp.ecommerce.navigation.EarphonesRoute
 import com.museady.cmp.ecommerce.navigation.HeadphonesRoute
 import com.museady.cmp.ecommerce.navigation.NavigationState
+import com.museady.cmp.ecommerce.navigation.ProductDetailsRoute
 import com.museady.cmp.ecommerce.navigation.SpeakersRoute
 import com.museady.cmp.ecommerce.navigation.TopLevelDestination
 import com.museady.cmp.ecommerce.navigation.rememberNavigationState
@@ -166,7 +167,9 @@ fun App(
                             onCartClick = {},
                             scrollBehavior = scrollBehavior,
                             categoryNameRes = currentDestination.getCategoryNameIfInHierarchy(),
-                            scrollState = scrollState
+                            scrollState = scrollState,
+                            isProductDetailsScreen = currentDestination.isRouteInHierarchy(ProductDetailsRoute::class),
+                            onBackClick = { navigationState.navController.popBackStack() }
                         )
                     },
                     modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)

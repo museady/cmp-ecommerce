@@ -13,6 +13,7 @@
     <!-- TopAppbar -->
     <string name="cd_top_appbar_menu_button">open menu</string>
     <string name="cd_top_appbar_cart_button">open cart</string>
+    <string name="cd_top_appbar_back_button">Go back</string>
 
     <!-- Header -->
     <string name="header_title">XX99 MARK II HEADPHONES</string>

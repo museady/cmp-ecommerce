@@ -39,9 +39,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.museady.cmp.ecommerce.designsystem.icons.AppIcons
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
 import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.app_name
+import ecommerce_cmp.composeapp.generated.resources.cd_top_appbar_back_button
 import ecommerce_cmp.composeapp.generated.resources.cd_top_appbar_cart_button
 import ecommerce_cmp.composeapp.generated.resources.cd_top_appbar_menu_button
 import ecommerce_cmp.composeapp.generated.resources.ic_cart
@@ -58,10 +60,12 @@ import org.jetbrains.compose.resources.stringResource
 fun AudioPhileTopAppBar(
     isCompact: Boolean,
     openMenuDrawer: () -> Unit,
+    onBackClick: () -> Unit,
     onCartClick: () -> Unit,
     scrollState: ScrollState,
     scrollBehavior: TopAppBarScrollBehavior,
     categoryNameRes: StringResource? = null,
+    isProductDetailsScreen: Boolean = false,
 ) {
     Column {
         // Switch between mobile and tablet app bars
@@ -69,13 +73,17 @@ fun AudioPhileTopAppBar(
             MobileTopAppbar(
                 onMenuButtonClick = openMenuDrawer,
                 onCartClick = onCartClick,
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
+                onBackClick = onBackClick,
+                isProductDetailsScreen = isProductDetailsScreen
             )
         } else {
             TabletTopAppbar(
                 onMenuButtonClick = openMenuDrawer,
                 onCartClick = onCartClick,
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
+                onBackClick = onBackClick,
+                isProductDetailsScreen = isProductDetailsScreen
             )
         }
 
@@ -108,6 +116,8 @@ fun AudioPhileTopAppBar(
 // Mobile version of the top app bar
 @Composable
 private fun MobileTopAppbar(
+    isProductDetailsScreen: Boolean,
+    onBackClick: () -> Unit,
     onMenuButtonClick: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
     onCartClick: () -> Unit
@@ -118,8 +128,10 @@ private fun MobileTopAppbar(
         },
         navigationIcon = {
             NavigationIcon(
+                isProductDetailsScreen = isProductDetailsScreen,
                 onMenuButtonClick = onMenuButtonClick,
-                modifier = Modifier.padding(start = 6.dp)
+                onBackClick = onBackClick,
+                modifier = Modifier.padding(start = 6.dp),
             )
         },
         actions = {
@@ -137,8 +149,10 @@ private fun MobileTopAppbar(
 @Composable
 private fun TabletTopAppbar(
     onMenuButtonClick: () -> Unit,
+    onBackClick: () -> Unit,
     onCartClick: () -> Unit,
-    scrollBehavior: TopAppBarScrollBehavior
+    scrollBehavior: TopAppBarScrollBehavior,
+    isProductDetailsScreen: Boolean,
 ) {
     TopAppBar(
         title = {
@@ -147,7 +161,9 @@ private fun TabletTopAppbar(
         navigationIcon = {
             NavigationIcon(
                 onMenuButtonClick = onMenuButtonClick,
-                modifier = Modifier.padding(start = 20.dp)
+                modifier = Modifier.padding(start = 20.dp),
+                isProductDetailsScreen = isProductDetailsScreen,
+                onBackClick = onBackClick
             )
         },
         actions = {
@@ -174,15 +190,26 @@ private fun TopAppBarTitle() {
 // Navigation icon (hamburger menu) for the app bar
 @Composable
 private fun NavigationIcon(
+    isProductDetailsScreen: Boolean,
+    onBackClick: () -> Unit,
     onMenuButtonClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(modifier) {
-        IconButton(onMenuButtonClick) {
-            Icon(
-                painter = painterResource(Res.drawable.ic_hamburger),
-                contentDescription = stringResource(Res.string.cd_top_appbar_menu_button)
-            )
+        if (isProductDetailsScreen) {
+            IconButton(onBackClick) {
+                Icon(
+                    imageVector = AppIcons.ArrowBack,
+                    contentDescription = stringResource(Res.string.cd_top_appbar_back_button)
+                )
+            }
+        } else {
+            IconButton(onMenuButtonClick) {
+                Icon(
+                    painter = painterResource(Res.drawable.ic_hamburger),
+                    contentDescription = stringResource(Res.string.cd_top_appbar_menu_button)
+                )
+            }
         }
     }
 }

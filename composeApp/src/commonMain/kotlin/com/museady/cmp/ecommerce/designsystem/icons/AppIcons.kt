@@ -1,7 +1,10 @@
 package com.museady.cmp.ecommerce.designsystem.icons
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Earbuds
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.Home
@@ -23,4 +26,5 @@ object AppIcons {
     val HeadphonesFilled = Icons.Filled.Headphones
     val Earphone = Icons.Outlined.Earbuds
     val EarphoneFilled = Icons.Filled.Earbuds
+    val ArrowBack = Icons.AutoMirrored.Default.ArrowBackIos
 }
