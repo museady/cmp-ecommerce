@@ -1,9 +1,7 @@
 package com.museady.cmp.ecommerce.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -18,8 +16,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,15 +24,14 @@ import com.museady.cmp.ecommerce.core.entity.Product
 import com.museady.cmp.ecommerce.core.json.loadData
 import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
+import com.museady.cmp.ecommerce.designsystem.component.FillWidthImage
 import com.museady.cmp.ecommerce.designsystem.component.NewProductText
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
-import com.museady.cmp.ecommerce.designsystem.theme.AppShapes.DefaultCardShape
 import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.allDrawableResources
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -110,9 +105,9 @@ fun ProductCard(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-        ProductImage(
-            productImageDrawableResource,
-            product.name,
+        FillWidthImage(
+            imageRes = productImageDrawableResource,
+            contentDescription = product.name,
             modifier = Modifier.padding(bottom = productImageBottomPadding)
         )
 
@@ -140,20 +135,6 @@ fun ProductCard(
             onProductCLick(product.id)
         })
     }
-}
-
-@Composable
-fun ProductImage(
-    imageRes: DrawableResource,
-    contentDescription: String,
-    modifier: Modifier = Modifier
-) {
-    Image(
-        painter = painterResource(imageRes),
-        modifier = modifier.fillMaxWidth().clip(DefaultCardShape),
-        contentDescription = contentDescription,
-        contentScale = ContentScale.FillWidth
-    )
 }
 
 fun findImageByName(name: String): DrawableResource = Res.allDrawableResources.getValue(name)

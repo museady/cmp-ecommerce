@@ -25,7 +25,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,6 +32,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.museady.cmp.ecommerce.core.entity.Category
 import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
+import com.museady.cmp.ecommerce.designsystem.component.FillWidthImage
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductOutlineButton
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
@@ -54,7 +54,6 @@ import ecommerce_cmp.composeapp.generated.resources.yx1_earphones_name
 import ecommerce_cmp.composeapp.generated.resources.zx7_speaker_name
 import ecommerce_cmp.composeapp.generated.resources.zx9_speaker_desc
 import ecommerce_cmp.composeapp.generated.resources.zx9_speaker_name
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -108,7 +107,10 @@ fun NewProductCard(
         if (isCompact) Res.drawable.mobile_home_image_header else Res.drawable.tablet_home_image_header
 
     Box(modifier = Modifier.fillMaxWidth()) {
-        NewProductImage(imageRes = imageRes)
+        FillWidthImage(
+            imageRes = imageRes,
+            contentDescription = stringResource(Res.string.new_product_description),
+        )
         GradientBackgroundOverlay()
         NewProductContent(isCompact = isCompact,
             onSeeProductClick = { onSeeProductClick(4) }
@@ -128,17 +130,6 @@ fun BoxScope.GradientBackgroundOverlay() {
 
     Box(Modifier.matchParentSize().alpha(1f).background(gradient))
 }
-
-@Composable
-fun NewProductImage(imageRes: DrawableResource) =
-    Box(modifier = Modifier.fillMaxWidth()) {
-        Image(
-            painter = painterResource(imageRes),
-            modifier = Modifier.fillMaxWidth(),
-            contentScale = ContentScale.FillWidth,
-            contentDescription = stringResource(Res.string.new_product_description),
-        )
-    }
 
 @Composable
 fun FeaturedProducts(
@@ -300,11 +291,9 @@ fun FeaturedSpeakerCompactCard(
             .fillMaxWidth()
             .clip(DefaultCardShape)
     ) {
-        Image(
-            painter = painterResource(imageRes),
+        FillWidthImage(
+            imageRes = imageRes,
             contentDescription = productName,
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier.fillMaxWidth()
         )
 
         Column(Modifier.align(Alignment.CenterStart).padding(start = contentStartPadding)) {
@@ -325,11 +314,10 @@ private fun FeaturedEarphoneCard(isCompact: Boolean, onSeeProductClick: () -> Un
 
     if (isCompact) {
         Column(Modifier.fillMaxWidth()) {
-            Image(
-                painter = painterResource(Res.drawable.mobile_home_yx1),
+            FillWidthImage(
+                imageRes = Res.drawable.mobile_home_yx1,
                 contentDescription = productName,
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
                     .padding(bottom = 16.dp)
                     .clip(RoundedCornerShape(8.dp))
             )
@@ -356,10 +344,9 @@ private fun FeaturedEarphoneCard(isCompact: Boolean, onSeeProductClick: () -> Un
             modifier = Modifier.height(IntrinsicSize.Min)
 
         ) {
-            Image(
-                painter = painterResource(Res.drawable.tablet_home_yx1),
+            FillWidthImage(
+                imageRes = Res.drawable.tablet_home_yx1,
                 contentDescription = productName,
-                contentScale = ContentScale.FillWidth,
                 modifier = Modifier
                     .clip(DefaultCardShape)
                     .weight(1f)
@@ -376,10 +363,16 @@ private fun FeaturedEarphoneCard(isCompact: Boolean, onSeeProductClick: () -> Un
                 Text(
                     productName,
                     style = MaterialTheme.typography.headlineLarge,
-                    modifier = Modifier.padding(start = 40.dp, bottom = 32.dp)
+                    modifier = Modifier.padding(
+                        start = 40.dp,
+                        bottom = 32.dp
+                    )
                 )
 
-                SeeProductOutlineButton({})
+                SeeProductOutlineButton(
+                    onSeeProductClick,
+                    modifier = Modifier.padding(start = 40.dp)
+                )
             }
         }
     }

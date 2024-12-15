@@ -1,6 +1,5 @@
 package com.museady.cmp.ecommerce.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,9 +26,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,20 +40,18 @@ import com.museady.cmp.ecommerce.core.json.loadData
 import com.museady.cmp.ecommerce.designsystem.component.BodyText
 import com.museady.cmp.ecommerce.designsystem.component.CategoryList
 import com.museady.cmp.ecommerce.designsystem.component.FilledButton
+import com.museady.cmp.ecommerce.designsystem.component.FillWidthImage
 import com.museady.cmp.ecommerce.designsystem.component.NewProductText
 import com.museady.cmp.ecommerce.designsystem.component.NumberQuantitySelector
 import com.museady.cmp.ecommerce.designsystem.component.SeeProductFilledButton
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
-import com.museady.cmp.ecommerce.designsystem.theme.AppShapes.DefaultCardShape
 import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.add_to_cart
 import ecommerce_cmp.composeapp.generated.resources.features
 import ecommerce_cmp.composeapp.generated.resources.in_the_box
 import ecommerce_cmp.composeapp.generated.resources.you_may_also_like
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -150,7 +145,7 @@ fun ProductDetailsHeader(
             verticalArrangement = Arrangement.spacedBy(24.dp),
             modifier = Modifier.padding(bottom = 24.dp)
         ) {
-            ProductHeaderImage(
+            FillWidthImage(
                 findImageByName(productImages.mobile),
                 contentDescription = productTitle
             )
@@ -171,7 +166,7 @@ fun ProductDetailsHeader(
         Row(
             Modifier.height(IntrinsicSize.Min)
         ) {
-            ProductHeaderImage(
+            FillWidthImage(
                 findImageByName(productImages.tablet),
                 modifier = Modifier.weight(.4f)
             )
@@ -195,21 +190,6 @@ fun ProductDetailsHeader(
                 ProductQuantityWithAddToCart(quantity, onQuantityChange, onAddToCartClick)
             }
         }
-}
-
-@Composable
-fun ProductHeaderImage(
-    imageRes: DrawableResource,
-    contentDescription: String? = null,
-    modifier: Modifier = Modifier
-) {
-    Image(
-        painter = painterResource(imageRes),
-        modifier = modifier.fillMaxWidth()
-            .clip(DefaultCardShape),
-        contentDescription = contentDescription,
-        contentScale = ContentScale.FillWidth,
-    )
 }
 
 @Composable
@@ -335,7 +315,7 @@ fun ProductGallery(
 
             images.forEach {
                 val imageRes = findImageByName(if (isCompat) it.mobile else it.tablet)
-                ProductHeaderImage(imageRes)
+                FillWidthImage(imageRes)
             }
         }
     } else {
@@ -350,15 +330,14 @@ fun ProductGallery(
                     .weight(0.4f) // Controls width of the column
                     .fillMaxHeight()
             ) {
-                ProductHeaderImage(findImageByName(gallery.first.tablet))
-                ProductHeaderImage(findImageByName(gallery.second.tablet))
+                FillWidthImage(findImageByName(gallery.first.tablet))
+                FillWidthImage(findImageByName(gallery.second.tablet))
             }
-
 
             Spacer(Modifier.width(18.dp))
 
             // Single image in the row
-            ProductHeaderImage(
+            FillWidthImage(
                 findImageByName(gallery.third.tablet),
                 modifier = Modifier
                     .weight(0.57f) // Controls width of the image
@@ -421,9 +400,9 @@ fun OtherProductCard(
         verticalArrangement = Arrangement.spacedBy(32.dp),
         modifier = modifier
     ) {
-        ProductHeaderImage(findImageByName(imageRes))
+        FillWidthImage(findImageByName(imageRes))
         Text(
-            otherProduct.name,
+            text = otherProduct.name,
             style = MaterialTheme.typography.headlineMedium.copy(letterSpacing = 1.71.sp)
         )
         SeeProductFilledButton({ onSeeProductClick(otherProduct.id) })

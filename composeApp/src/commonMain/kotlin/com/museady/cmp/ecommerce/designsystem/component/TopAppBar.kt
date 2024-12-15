@@ -319,7 +319,6 @@ private fun calculateTargetPadding(
     }
 }
 
-
 // Custom colors for the top app bar
 private val TopAppBarColors
     @Composable get() = TopAppBarDefaults.topAppBarColors().copy(

@@ -20,9 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -32,7 +30,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.museady.cmp.ecommerce.designsystem.theme.AppColors
-import com.museady.cmp.ecommerce.designsystem.theme.AppShapes.DefaultCardShape
 import com.museady.cmp.ecommerce.navigation.TopLevelDestination
 import ecommerce_cmp.composeapp.generated.resources.Res
 import ecommerce_cmp.composeapp.generated.resources.app_name
@@ -200,8 +197,8 @@ private fun MobileFooterHeroSection() {
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        HeroImage(
-            heroImageRes = Res.drawable.mobile_home_best_gear,
+        FillWidthImage(
+            imageRes = Res.drawable.mobile_home_best_gear,
             modifier = Modifier.padding(bottom = 40.dp)
         )
         HeroTitle(
@@ -221,8 +218,8 @@ private fun TabletFooterHeroSection() {
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        HeroImage(
-            heroImageRes = Res.drawable.tablet_home_best_gear,
+        FillWidthImage(
+            imageRes = Res.drawable.tablet_home_best_gear,
             modifier = Modifier.padding(bottom = 64.dp)
         )
         HeroTitle(
@@ -247,21 +244,6 @@ fun FooterDividerWithLogo() {
     Image(
         painter = painterResource(Res.drawable.logo),
         contentDescription = stringResource(Res.string.app_name),
-    )
-}
-
-@Composable
-private fun HeroImage(
-    heroImageRes: DrawableResource,
-    modifier: Modifier = Modifier
-) {
-    Image(
-        painter = painterResource(heroImageRes),
-        contentDescription = "Best Gear",
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(DefaultCardShape),
-        contentScale = ContentScale.FillWidth
     )
 }
 
@@ -344,12 +326,14 @@ fun FooterNavigationItems(
 private fun FooterTextButton(
     text: String,
     onClick: () -> Unit,
-) = Text(
-    text,
-    style = MaterialTheme.typography.labelLarge,
-    color = AppColors.PureWhite,
-    modifier = Modifier.clickable { onClick() }
-)
+) {
+    Text(
+        text,
+        style = MaterialTheme.typography.labelLarge,
+        color = AppColors.PureWhite,
+        modifier = Modifier.clickable { onClick() }
+    )
+}
 
 
 @Composable
